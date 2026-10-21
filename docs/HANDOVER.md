@@ -38,9 +38,9 @@ A workflow is included at `.github/workflows/deploy.yml`. It **only runs when st
 ## 4. Going live checklist
 
 - [ ] Founder has worked through `docs/FOUNDER-CHECKLIST.md`
-- [ ] `src/config/site.ts` updated and `donations.approved` set to `true`
+- [ ] `src/config/site.ts` updated with the confirmed details
 - [ ] Test a small real donation through each button
-- [ ] Preview banner has disappeared (it goes automatically once donations are approved)
+- [ ] `site.indexable` set to `true` so search engines can find the site
 - [ ] Custom domain connected, if wanted
 - [ ] Add the website link to the Facebook page's "About" section
 

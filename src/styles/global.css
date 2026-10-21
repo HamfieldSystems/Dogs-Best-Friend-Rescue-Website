@@ -164,3 +164,9 @@ blockquote { margin: 0; padding: 18px 22px; border-left: 5px solid var(--tan); b
 
 /* On phones the sticky bar is the donate button, so keep the header to one row */
 @media (max-width: 759px) { .site-header nav li:has(.btn-donate) { display: none; } }
+
+/* Specific gifts on the donate page */
+.gift { display: flex; flex-direction: column; }
+.gift .btn { margin-top: auto; align-self: flex-start; }
+.gift-amount { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; color: var(--donate); margin-bottom: 0.2em; }
+.gift-amount span { font-size: 1rem; font-weight: 600; }

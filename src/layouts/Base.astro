@@ -41,6 +41,7 @@ const year = new Date().getFullYear();
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    {!site.indexable && <meta name="robots" content="noindex, nofollow" />}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -87,6 +88,9 @@ const year = new Date().getFullYear();
         <div>
           <p><strong>Latest news &amp; photos</strong><br /><a href={facebook.url} rel="noopener">Follow us on Facebook</a></p>
           <p><strong>Email</strong><br /><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+          {contact.phone.show && (
+            <p><strong>Help with an animal</strong><br /><a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a></p>
+          )}
         </div>
         <div>
           <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>

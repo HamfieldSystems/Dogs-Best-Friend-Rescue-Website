@@ -33,11 +33,14 @@ import { path } from '../config/paths';
   <section>
     <div class="narrow">
       <h2>Other ways to reach us</h2>
-      <p><strong>Email:</strong> <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
-      {contact.phone.confirmed && (
+      <p>
+        <strong>Email:</strong> <a href={`mailto:${contact.email}`}>{contact.email}</a><br />
+        or <a href={`mailto:${contact.secondaryEmail}`}>{contact.secondaryEmail}</a>
+      </p>
+      {contact.phone.show && (
         <p><strong>For help with an animal, call:</strong> <a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a></p>
       )}
-      {contact.postalAddress.confirmed && (
+      {contact.postalAddress.show && (
         <p><strong>Post (mail only):</strong><br />{contact.postalAddress.lines.map((l) => (<>{l}<br /></>))}</p>
       )}
       <p>

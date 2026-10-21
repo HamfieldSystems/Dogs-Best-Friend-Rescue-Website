@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import GiveBox from '../components/GiveBox.astro';
+import GiftList from '../components/GiftList.astro';
 import { facebook, contact } from '../config/site';
 import { path } from '../config/paths';
 import charcoal from '../assets/photos/charcoal.jpg';
@@ -80,6 +81,14 @@ import tux from '../assets/photos/tux.jpg';
   <section class="section-sand">
     <div class="narrow">
       <GiveBox heading="Give to the dogs" />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Or pick something specific</p>
+      <h2>What a gift can buy</h2>
+      <GiftList />
     </div>
   </section>
 
