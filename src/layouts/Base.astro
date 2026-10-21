@@ -8,7 +8,7 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  current?: 'home' | 'donate' | 'about' | 'contact';
+  current?: 'home' | 'donate' | 'about' | 'involved' | 'membership' | 'contact';
 }
 
 const { title, description = site.description, current } = Astro.props;
@@ -16,10 +16,12 @@ const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | Dog rescue
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(path('/og-image.jpg'), Astro.site);
 
+// The logo links to the home page, so "Home" isn't repeated here.
 const nav = [
-  { key: 'home', href: path('/'), label: 'Home' },
   { key: 'about', href: path('/about/'), label: 'About' },
-  { key: 'contact', href: path('/contact/'), label: 'Updates & contact' },
+  { key: 'involved', href: path('/get-involved/'), label: 'Get involved' },
+  { key: 'membership', href: path('/membership/'), label: 'Membership' },
+  { key: 'contact', href: path('/contact/'), label: 'Contact' },
 ];
 const year = new Date().getFullYear();
 ---
@@ -84,6 +86,7 @@ const year = new Date().getFullYear();
         <div>
           <p class="footer-name">{site.legalName}</p>
           <p>A small dog rescue and shelter in {site.location}.</p>
+          <p class="footer-quote">“Everything that is done in the world is done by hope.”<br /><small>Martin Luther</small></p>
         </div>
         <div>
           <p><strong>Latest news &amp; photos</strong><br /><a href={facebook.url} rel="noopener">Follow us on Facebook</a></p>

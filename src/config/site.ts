@@ -25,6 +25,12 @@ export const facebook = {
   handle: '@DOGSBFRESCUE',
 };
 
+// Older accounts linked from the archived site (2022).
+export const olderSocials = [
+  { label: 'Facebook (older page)', url: 'https://www.facebook.com/K9DRAS' },
+  { label: 'X / Twitter @K9DRAS', url: 'https://twitter.com/K9DRAS' },
+];
+
 export const contact = {
   // Main contact on the archived homepage.
   email: 'dogsbfrescue@gmail.com',
@@ -38,6 +44,25 @@ export const contact = {
     show: true,
   },
 };
+
+/**
+ * MEMBERSHIP — the yearly levels from the archived Membership page (2022).
+ * People enquire by email; the rescue replies with payment details.
+ */
+export const membership = {
+  levels: [
+    { name: 'The Pups', amount: 1000, note: 'Junior members under 18', perks: ['Membership certificate', 'Name a dog!'] },
+    { name: 'The Chihuahua', amount: 2000, perks: ['Membership certificate', 'Monthly newsletter', 'Invitation to the Annual General Meeting'] },
+    { name: 'The Bulldog', amount: 5000, perks: ['Membership certificate', 'Monthly newsletter', 'Invitation to the Annual General Meeting', 'Special offers from our partners'] },
+    { name: 'The Great Dane', amount: 10000, perks: ['Membership certificate', 'Monthly newsletter', 'Invitation to the Annual General Meeting', 'Special offers from our partners', 'End of year celebration invitation', 'Name a dog'] },
+  ],
+};
+
+/** PARTNERS — thanked on the archived Partners page (2022). */
+export const partners = [
+  { name: 'Floyd Felines & Friends', text: '' },
+  { name: 'Cibes Lift Thailand', text: 'Providing recycled crates for use as dog beds and climbing equipment.' },
+];
 
 /**
  * DONATIONS

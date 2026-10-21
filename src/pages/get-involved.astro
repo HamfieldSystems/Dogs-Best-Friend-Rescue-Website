@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import DogGallery from '../components/DogGallery.astro';
+import { contact, facebook, partners } from '../config/site';
+import { path } from '../config/paths';
+import charcoal from '../assets/photos/charcoal.jpg';
+import frankie from '../assets/photos/frankie.jpg';
+
+const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURIComponent(subject)}`;
+---
+<Base
+  title="Get involved"
+  description="Adopt, foster, sponsor a dog, volunteer, or fly with a dog to their new family. Ways to help Dogs' Best Friend Rescue."
+  current="involved"
+>
+  <section class="hero">
+    <div class="narrow">
+      <p class="eyebrow">Get involved</p>
+      <h1>Make your mark</h1>
+      <p class="lead">
+        Money keeps the shelter running, but there are plenty of other ways to help: give a dog a home, sponsor their care,
+        lend a hand, or carry a dog to their new family.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-outline btn-small" href="#adopt">Adopt</a>
+        <a class="btn btn-outline btn-small" href="#sponsor">Sponsor</a>
+        <a class="btn btn-outline btn-small" href="#fly">Fly with a dog</a>
+        <a class="btn btn-outline btn-small" href="#volunteer">Volunteer</a>
+        <a class="btn btn-outline btn-small" href={path('/membership/')}>Membership</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sand" id="adopt">
+    <div class="wrap">
+      <h2>Adopt a dog</h2>
+      <div class="narrow" style="margin-inline:0">
+        <p>
+          Help reduce the street dog population by giving one of our pups a safe and loving home. Our dogs and puppies come from
+          different backgrounds, and some lived poor and harmful lives before they were rescued.
+        </p>
+        <ul class="checklist">
+          <li>All dogs are sterilised, parasite free, wormed and vaccinated.</li>
+          <li>Some have ongoing health issues, so please ask about each dog carefully.</li>
+          <li>There are no adoption fees, and we can help with relocation.</li>
+          <li>Adopters go through a careful screening process and are helped with responsible animal care.</li>
+        </ul>
+        <p><strong>Remember: adopt, don’t shop.</strong> If you can’t adopt, consider fostering, sponsoring or donating to help them find their forever homes.</p>
+        <div class="btn-row">
+          <a class="btn btn-donate" href={mail('Adoption application / expression of interest')}>Apply or express interest</a>
+          <a class="btn btn-outline" href={facebook.url} rel="noopener">See who needs a home now</a>
+        </div>
+      </div>
+      <h3 style="margin-top:40px">Dogs listed for adoption on our 2022 website</h3>
+      <p>For the dogs looking for homes today, please check Facebook or get in touch.</p>
+      <DogGallery all />
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow">
+      <h2>Foster a dog</h2>
+      <p>
+        Foster homes help dogs learn house training and get used to living with people, which helps us find the right family for
+        each dog. If you’re near the rescue and can offer a temporary home, <a href={mail('Fostering')}>get in touch</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-sand" id="sponsor">
+    <div class="wrap split">
+      <div>
+        <h2>Sponsor a dog</h2>
+        <p>
+          Some of our rescues need complex and expensive medical treatment, and others aren’t suitable for adoption. Partial and
+          full sponsorship packages are available. As a sponsor you receive:
+        </p>
+        <ul class="checklist">
+          <li>Regular updates on the dog’s treatment and wellbeing</li>
+          <li>A certificate of appreciation</li>
+          <li>Free <a href={path('/membership/')}>Bulldog membership</a> while you sponsor</li>
+        </ul>
+        <h3>Charcoal (born 6/3/20)</h3>
+        <p>
+          She may have wonky back legs, but Charcoal doesn’t let it slow her down. She was dumped as a puppy at a temple with her
+          brother Noodles, and has grown up in foster care. She’s a very energetic dog. Charcoal needs surgery to correct her
+          luxating patellas. She’s already sterilised and otherwise healthy, and once she’s had her operation she can be placed for adoption.
+        </p>
+        <p><strong>2022 estimates:</strong> surgery and physical therapy 40,000–50,000 baht; X-rays 1,200 baht.</p>
+        <a class="btn btn-donate" href={mail('Sponsorship enquiry')}>Sponsor enquiry</a>
+      </div>
+      <Image src={charcoal} alt="Charcoal, a black dog with large upright ears, sitting on a tiled floor" widths={[330]} sizes="330px" style="max-width:330px;margin-inline:auto" />
+    </div>
+  </section>
+
+  <section id="fly">
+    <div class="narrow">
+      <h2>Become a flight volunteer</h2>
+      <p class="lead">Help a dog get to their forever home.</p>
+      <p>
+        Are you travelling to the USA, Canada or Europe? Flight volunteers let us send adopted dogs on their flight as oversized
+        luggage. Tell us your date of travel, airline and destination, and we’ll be in touch if we have adopted dogs that can travel with you.
+      </p>
+      <a class="btn btn-donate" href={mail('Flight volunteer')}>Offer your flight</a>
+    </div>
+  </section>
+
+  <section class="section-sand" id="volunteer">
+    <div class="narrow">
+      <h2>Volunteer your time</h2>
+      <p>
+        This is one of the simplest ways to help. We believe our work succeeds best when the community gets actively involved.
+        An expert pooper scooper, walker and master of play is always needed!
+      </p>
+      <p>Visits are limited and by appointment only, so please <a href={mail('Volunteering')}>get in touch first</a>.</p>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="wrap split">
+      <div>
+        <h2>Our partners</h2>
+        <p>
+          Our partners help the Association support our rescues, treatments, operations, equipment and materials, and give our
+          members special discounts and offers. Thank you all for your continued support.
+        </p>
+        <ul class="checklist">
+          {partners.map((p) => (
+            <li><strong>{p.name}</strong>{p.text && <> – {p.text}</>}</li>
+          ))}
+        </ul>
+        <p>Would your business like to partner with us? <a href={mail('Partnership')}>Get in touch</a>.</p>
+      </div>
+      <Image src={frankie} alt="A black kitten touching noses with a black cat on a tiled floor" widths={[480, 900]} sizes="(min-width: 820px) 45vw, 100vw" />
+    </div>
+  </section>
+</Base>

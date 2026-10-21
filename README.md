@@ -11,8 +11,10 @@ The site is evergreen: it explains who the rescue is and what running it costs, 
 | --- | --- | --- |
 | Home | `/` | Mission, real photos, donate call to action, founder intro, other ways to help |
 | Help keep the rescue running | `/donate/` | Ongoing costs, why monthly gifts matter, how to give |
-| About | `/about/` | History, mission and founder story |
-| Updates & contact | `/contact/` | Points to Facebook, plus email |
+| About | `/about/` | History, mission, vision and founder story |
+| Get involved | `/get-involved/` | Adopt (2022 dogs), foster, sponsor, fly with a dog, volunteer, partners |
+| Membership | `/membership/` | Four yearly membership levels and perks, joined by email |
+| Contact | `/contact/` | Points to Facebook, plus email, phone and postal address |
 
 ## Status: preview
 

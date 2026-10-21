@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { facebook, contact } from '../config/site';
+import { facebook, contact, olderSocials } from '../config/site';
 import { path } from '../config/paths';
 ---
 <Base
@@ -41,17 +41,23 @@ import { path } from '../config/paths';
         <p><strong>For help with an animal, call:</strong> <a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a></p>
       )}
       {contact.postalAddress.show && (
-        <p><strong>Post (mail only):</strong><br />{contact.postalAddress.lines.map((l) => (<>{l}<br /></>))}</p>
+        <p><strong>Head office (mail only):</strong><br />{contact.postalAddress.lines.map((l) => (<>{l}<br /></>))}</p>
       )}
+      <p>
+        <strong>Also find us at:</strong>
+        {olderSocials.map((s, i) => (<>{i > 0 && ' · '}<a href={s.url} rel="noopener">{s.label}</a></>))}
+      </p>
       <p>
         We’re a very small team caring for a lot of dogs, so replies can take a little while. Thank you for your patience.
       </p>
 
       <h3 style="margin-top:32px">Getting in touch about…</h3>
       <ul class="checklist">
-        <li><strong>Adopting a dog</strong> – ask which dogs are ready for a home. All adopters go through careful checks.</li>
-        <li><strong>Flying with a dog</strong> – travelling to the USA, Canada or Europe? Send us your travel date, airline and destination.</li>
-        <li><strong>Volunteering</strong> – visits are by appointment only, so please get in touch first.</li>
+        <li><strong><a href={path('/get-involved/#adopt')}>Adopting a dog</a></strong> – ask which dogs are ready for a home. All adopters go through careful checks.</li>
+        <li><strong><a href={path('/get-involved/#sponsor')}>Sponsoring a dog</a></strong> – partial and full sponsorship packages are available.</li>
+        <li><strong><a href={path('/membership/')}>Membership</a></strong> – tell us which level you’d like and we’ll send the subscription and payment details.</li>
+        <li><strong><a href={path('/get-involved/#fly')}>Flying with a dog</a></strong> – travelling to the USA, Canada or Europe? Send us your travel date, airline and destination.</li>
+        <li><strong><a href={path('/get-involved/#volunteer')}>Volunteering</a></strong> – visits are by appointment only, so please get in touch first.</li>
         <li><strong>Giving</strong> – see <a href={path('/donate/')}>how to donate</a>, or ask us about bank transfers.</li>
       </ul>
     </div>

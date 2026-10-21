@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { contact, membership } from '../config/site';
+import { path } from '../config/paths';
+import mousie from '../assets/photos/mousie.jpg';
+
+const baht = (n: number) => `฿${n.toLocaleString('en-US')}`;
+const enquire = (level: string) =>
+  `mailto:${contact.email}?subject=${encodeURIComponent(`Membership enquiry: ${level}`)}&body=${encodeURIComponent(
+    `Hello,\n\nI'd like to join Dogs' Best Friend Rescue Association as ${level}.\n\nName:\nCountry:\n\nThank you!`,
+  )}`;
+---
+<Base
+  title="Membership"
+  description="Join Dogs' Best Friend Rescue Association. Four levels of yearly membership, from The Pups to The Great Dane."
+  current="membership"
+>
+  <section class="hero">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Membership</p>
+        <h1>Become a member of the Association</h1>
+        <p class="lead">
+          We formed an Association so the wider community can make a difference for the lives of street dogs in Thailand.
+        </p>
+        <p>
+          Looking for a unique gift for someone special, want to be involved in animal rescue, or just love dogs? Whatever the
+          reason, come and join our community. There are four levels of yearly membership, doggy themed of course.
+        </p>
+      </div>
+      <Image src={mousie} alt="Mousie, a brown and black puppy with big ears, on the first day at the rescue" widths={[400, 800]} sizes="(min-width: 820px) 45vw, 100vw" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="wrap">
+      <h2>Choose your level</h2>
+      <p>All memberships are yearly.</p>
+      <div class="grid grid-4" style="margin-top:20px">
+        {membership.levels.map((m) => (
+          <div class="card gift">
+            <p class="gift-amount">{baht(m.amount)}<span> a year</span></p>
+            <h3>{m.name}</h3>
+            {m.note && <p><em>{m.note}</em></p>}
+            <ul class="checklist">
+              {m.perks.map((p) => <li>{p}</li>)}
+            </ul>
+            <a class="btn btn-donate btn-small" href={enquire(m.name)}>Join as {m.name}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow">
+      <h2>How to join</h2>
+      <p>
+        Choose a level and send us your details. Email <a href={`mailto:${contact.email}`}>{contact.email}</a> or
+        message us on Facebook. We’ll send you a membership subscription and the payment details.
+      </p>
+      <p>
+        Sponsoring a dog also gives you free Bulldog membership for the time you sponsor.
+        <a href={path('/get-involved/#sponsor')}>Find out about sponsoring</a>.
+      </p>
+    </div>
+  </section>
+</Base>

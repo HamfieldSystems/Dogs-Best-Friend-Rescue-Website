@@ -8,25 +8,50 @@ import tux from '../assets/photos/tux.jpg';
 import zoe from '../assets/photos/zoe.jpg';
 import charcoal from '../assets/photos/charcoal.jpg';
 import missySox from '../assets/photos/missy-and-sox.jpg';
+import happy from '../assets/photos/happy.jpg';
+import wrinkles from '../assets/photos/wrinkles.jpg';
+import oreo from '../assets/photos/oreo.jpg';
+import dahlia from '../assets/photos/dahlia.jpg';
+import noodles from '../assets/photos/noodles.jpg';
+import trixie from '../assets/photos/trixie.jpg';
+import penny from '../assets/photos/penny.jpg';
+
+interface Props {
+  // Show every dog with the dates of birth from the 2022 adoption page.
+  all?: boolean;
+}
+const { all = false } = Astro.props;
 
 // Dogs shown on the rescue's adoption and sponsor pages in 2022.
+// `born` is copied as written on the 2022 site (day/month/year).
 const dogs = [
-  { name: 'Bella', img: bella, alt: 'Bella, a black and tan puppy, looking up at the camera' },
-  { name: 'Angus', img: angus, alt: 'Angus, a fluffy brown puppy sitting on a cushion' },
-  { name: 'Charcoal', img: charcoal, alt: 'Charcoal, a black dog with big upright ears, sitting on a tiled floor' },
-  { name: 'Pip', img: pip, alt: 'Pip, a black and tan puppy standing on a bed' },
-  { name: 'Macey', img: macey, alt: 'Macey, a slim black young dog with an orange collar' },
-  { name: 'Tux', img: tux, alt: 'Tux, a black dog with floppy ears resting his chin on a bench' },
-  { name: 'Zoe', img: zoe, alt: 'Zoe, a black puppy lying on a wooden bench' },
-  { name: 'Missy & Sox', img: missySox, alt: 'Missy and Sox, two black dogs playing together by a fence' },
+  { name: 'Bella', born: '9/5/21', img: bella, alt: 'Bella, a black and tan puppy, looking up at the camera', featured: true },
+  { name: 'Angus', born: '9/8/21', img: angus, alt: 'Angus, a fluffy brown puppy sitting on a cushion', featured: true },
+  { name: 'Charcoal', born: '6/3/20', img: charcoal, alt: 'Charcoal, a black dog with big upright ears, sitting on a tiled floor', featured: true },
+  { name: 'Pip', born: '9/5/21', img: pip, alt: 'Pip, a black and tan puppy standing on a bed', featured: true },
+  { name: 'Macey', born: '3/02/2021', img: macey, alt: 'Macey, a slim black young dog with an orange collar', featured: true },
+  { name: 'Tux', born: '8/01/2021', img: tux, alt: 'Tux, a black dog with floppy ears resting his chin on a bench', featured: true },
+  { name: 'Zoe', born: '3/02/2021', img: zoe, alt: 'Zoe, a black puppy lying on a wooden bench', featured: true },
+  { name: 'Missy & Sox', born: '15/11/20', img: missySox, alt: 'Missy and Sox, two black dogs playing together by a fence', featured: true },
+  { name: 'Happy', born: '05/05/2020', img: happy, alt: 'Happy, a tan dog with a big smile, sitting on grass' },
+  { name: 'Noodles', born: '6/03/2020', img: noodles, alt: 'Noodles, Charcoal’s brother, a black and white dog with his mouth open, held by a carer' },
+  { name: 'Wrinkles', born: '01/01/2021', img: wrinkles, alt: 'Wrinkles, a pale cream dog with a pink tongue, held by a carer' },
+  { name: 'Oreo', born: '9/01/2021', img: oreo, alt: 'Oreo, a black and white dog looking at the camera' },
+  { name: 'Dahlia', born: '8/01/2021', img: dahlia, alt: 'Dahlia, a black dog lying on a wooden bench' },
+  { name: 'Trixie', born: '8/01/2021', img: trixie, alt: 'Trixie, a tan dog with large ears, held by a carer' },
+  { name: 'Penny', born: '8/01/2021', img: penny, alt: 'Penny, a brindle brown dog held by a carer' },
 ];
+const shown = all ? dogs : dogs.filter((d) => d.featured);
 ---
 <ul class="dogs">
-  {dogs.map((d) => (
+  {shown.map((d) => (
     <li>
       <figure>
         <Image src={d.img} alt={d.alt} widths={[240, 400]} sizes="(min-width: 700px) 260px, 45vw" />
-        <figcaption>{d.name}</figcaption>
+        <figcaption>
+          {d.name}
+          {all && <small class="born">Born {d.born}</small>}
+        </figcaption>
       </figure>
     </li>
   ))}

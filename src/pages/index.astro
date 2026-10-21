@@ -18,7 +18,10 @@ import rambo from '../assets/photos/rambo.jpg';
           Dogs’ Best Friend Rescue takes in sick, injured and unwanted dogs, treats them, and gives them a safe place to live.
           Some find new families. Others stay with us for life.
         </p>
-        <p>We’re a small rescue. Your support pays for the food, vet care and daily work that keeps the shelter going.</p>
+        <p>
+          We’ve rescued numerous adult dogs and puppies with underlying health issues. We’re a small rescue, and your support pays
+          for the food, vet care and daily work that keeps the shelter going.
+        </p>
         <div class="btn-row">
           <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>
           <a class="btn btn-outline" href={facebook.url} rel="noopener">See the dogs on Facebook</a>
@@ -98,16 +101,28 @@ import rambo from '../assets/photos/rambo.jpg';
       <h2>Other ways to help</h2>
       <div class="grid grid-3">
         <div>
-          <h3>Share us</h3>
-          <p>Follow and share the rescue’s <a href={facebook.url} rel="noopener">Facebook posts</a>. It costs nothing and helps more people find the dogs.</p>
+          <h3>Become a member</h3>
+          <p>Join the Association, from The Pups to The Great Dane. <a href={path('/membership/')}>See membership levels</a>.</p>
+        </div>
+        <div>
+          <h3>Sponsor a dog</h3>
+          <p>Support the care of a dog who needs expensive treatment or can’t be adopted. <a href={path('/get-involved/#sponsor')}>About sponsoring</a>.</p>
         </div>
         <div>
           <h3>Adopt</h3>
-          <p>Looking for a dog? <a href={path('/contact/')}>Get in touch</a> to ask which dogs are ready for a home.</p>
+          <p>No adoption fees, and we can help with relocation. <a href={path('/get-involved/#adopt')}>Adopt, don’t shop</a>.</p>
         </div>
         <div>
           <h3>Fly with a dog</h3>
-          <p>Travelling from Thailand to the USA, Canada or Europe? You may be able to help an adopted dog reach their new family. <a href={path('/contact/')}>Tell us your travel plans</a>.</p>
+          <p>Travelling to the USA, Canada or Europe? Help an adopted dog reach their new family. <a href={path('/get-involved/#fly')}>Become a flight volunteer</a>.</p>
+        </div>
+        <div>
+          <h3>Volunteer</h3>
+          <p>An expert pooper scooper, walker and master of play is always needed. <a href={path('/get-involved/#volunteer')}>Lend a hand</a>.</p>
+        </div>
+        <div>
+          <h3>Share us</h3>
+          <p>Follow and share the rescue’s <a href={facebook.url} rel="noopener">Facebook posts</a>. It costs nothing and helps more people find the dogs.</p>
         </div>
       </div>
     </div>

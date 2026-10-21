@@ -25,21 +25,24 @@ The preview already shows all the contact and donation details recovered from th
 - [ ] **Email.** The site shows `dogsbfrescue@gmail.com` as the main address and `k9dras@gmail.com` as a second one. Are both still monitored? Should one be dropped?
 - [ ] **Phone** `088 890 1926` ("for help with an animal"). It's shown on the contact page and in the footer. Still correct? To hide it, set `phone.show: false`.
 - [ ] **Postal address** (Nonthaburi, mail only). It's shown on the contact page. Still correct, and are you happy for it to be public? To hide it, set `postalAddress.show: false`.
-- [ ] **Facebook.** The site links to `facebook.com/DOGSBFRESCUE`. The 2022 site linked to `facebook.com/K9DRAS` and `twitter.com/K9DRAS`. Should the older accounts be linked too?
 
 ## Activities
 
 - [ ] Is the rescue still doing **adoptions** and **flight volunteers** (USA, Canada, Europe)? Are **volunteer visits** still by appointment only?
 - [ ] Does the rescue still run, or want to mention, the **Ratchaburi sterilisation work**? A Facebook post mentions raising 100,000 THB for it, but we couldn't read the full post, so the site doesn't mention it.
 
-## Membership and partners (found on the 2022 site, not used on the new one)
+## Membership, sponsorship and partners (restored from the 2022 site)
 
-- [ ] **Membership.** In 2022 the Association offered yearly membership at ฿1,000 (Pups, under 18), ฿2,000 (Chihuahua), ฿5,000 (Bulldog) and ฿10,000 (Great Dane). Benefits included a certificate, a monthly newsletter, an AGM invitation and partner offers. The new site leaves it out because newsletters and AGMs create admin work. Does membership still exist? If it does, the simplest option would be one line on the donate page that says "ask us about membership".
-- [ ] **Partners.** The 2022 site thanked **Floyd Felines & Friends** and **Cibes Lift Thailand** (which provided recycled crates for dog beds and climbing equipment). Are they still partners, and would they like to be thanked on the site? This would help build trust.
+- [ ] **Membership page.** It shows the four 2022 yearly levels: The Pups ฿1,000 (under 18s), The Chihuahua ฿2,000, The Bulldog ฿5,000 and The Great Dane ฿10,000, each with its perks. "Join" buttons open an email; the rescue replies with payment details, as before. Do the levels, prices and perks still stand? Each one promises ongoing work (a monthly newsletter, an annual general meeting, partner offers, naming a dog, an end-of-year celebration). Are you happy to keep those up? If not, edit `membership` in `src/config/site.ts`.
+- [ ] **Sponsorship.** The Get involved page offers partial and full sponsorship with regular updates, a certificate and free Bulldog membership. Charcoal is shown as the 2022 example, with her surgery (40,000–50,000 baht) and X-ray (1,200 baht) estimates. Does Charcoal still need sponsoring, or should she be replaced or removed?
+- [ ] **Partners.** The Get involved page thanks **Floyd Felines & Friends** and **Cibes Lift Thailand** (recycled crates for dog beds and climbing equipment), by name only. Are they still partners? The Cibes logo was left out until they give permission to use it.
+- [ ] **Adoption.** The 2022 wording is back: "no fees and we can assist with relocation", every dog sterilised and vaccinated, "adopt, don't shop". It also shows all 15 dogs from the 2022 adoption and sponsor pages with their dates of birth, clearly labelled as from 2022. Is the wording still true? Are you happy to show those dogs?
+- [ ] **Outreach.** The donate page quotes the 2022 statement that leftover funds go to education in local schools, sterilisation clinics and Freedom Flight costs. The About page includes the vision of mobile sterilisation clinics. Are these still accurate?
+- [ ] **Older social accounts.** The contact page links `facebook.com/K9DRAS` and `twitter.com/K9DRAS`. Are these still active, or should the links be removed?
 
 ## Photos
 
-- [ ] All photos come from the rescue's own 2022 website: Happy, Rambo, Charcoal, Bella, Angus, Pip, Macey, Tux, Zoe, Missy & Sox, and Peter and Khung. Are you happy for them to be used? Would you like to swap any for newer photos?
+- [ ] All photos come from the rescue's own 2022 website: the 15 dogs (Happy, Charcoal, Noodles, Bella, Angus, Pip, Macey, Tux, Zoe, Missy & Sox, Wrinkles, Oreo, Dahlia, Trixie, Penny), plus Rambo, Mousie (membership page), the cat and kitten photo from the Partners page, and Peter and Khung. Are you happy for them to be used? Would you like to swap any for newer photos?
 - [ ] Stock photos from the old Wix site were deliberately left out.
 
 ## Domain

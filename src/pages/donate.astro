@@ -89,6 +89,15 @@ import tux from '../assets/photos/tux.jpg';
       <p class="eyebrow">Or pick something specific</p>
       <h2>What a gift can buy</h2>
       <GiftList />
+      <blockquote style="margin-top:24px">
+        All donations go towards food, shelter, medication and health care for all our dogs. Any remaining funds go to our outreach
+        programmes and services: education in local schools, sterilisation clinics and Freedom Flight costs. If you’d like to pay for
+        a specific item, please <a href={`mailto:${contact.email}`}>contact us</a>.
+      </blockquote>
+      <p style="margin-top:16px">
+        Prefer to support one dog, or join the Association? <a href={path('/get-involved/#sponsor')}>Sponsor a dog</a> or
+        <a href={path('/membership/')}>become a member</a>.
+      </p>
     </div>
   </section>
 
