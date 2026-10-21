@@ -1,0 +1,55 @@
+---
+import { donations, contact, facebook } from '../config/site';
+
+interface Props {
+  heading?: string;
+}
+const { heading = 'Give to the dogs' } = Astro.props;
+const live = donations.approved;
+const hasMonthly = live && donations.monthly.url !== '';
+---
+<div class="give-box" id="give">
+  <h2>{heading}</h2>
+  <p>
+    Every gift goes to the day-to-day care of the dogs at the shelter. A regular monthly gift, however small,
+    helps most, because it lets the rescue plan ahead for food, vet bills and wages.
+  </p>
+
+  {live ? (
+    <div class="give-options">
+      {hasMonthly && (
+        <a class="btn btn-donate" href={donations.monthly.url} rel="noopener">{donations.monthly.label}</a>
+      )}
+      <a class={`btn ${hasMonthly ? 'btn-outline' : 'btn-donate'}`} href={donations.oneOff.url} rel="noopener">
+        {donations.oneOff.label}
+      </a>
+    </div>
+  ) : (
+    <div class="give-options">
+      <span class="btn" aria-disabled="true">Online giving coming soon</span>
+      <a class="btn btn-outline" href={facebook.url} rel="noopener">Message us on Facebook</a>
+    </div>
+  )}
+
+  {!live && (
+    <p class="notice">
+      We’re confirming our online donation links with the rescue before switching them on.
+      Until then, please <a href={facebook.url} rel="noopener">message the rescue on Facebook</a> or email
+      <a href={`mailto:${contact.email}`}>{contact.email}</a> and they’ll tell you how to give.
+    </p>
+  )}
+
+  {live && !hasMonthly && (
+    <p>
+      <strong>Want to give every month?</strong>
+      <a href={`mailto:${contact.email}?subject=Monthly%20donation`}>Email us</a> and we’ll help you set up a regular gift.
+    </p>
+  )}
+
+  {donations.bankTransferOnRequest && (
+    <p>
+      <strong>Prefer a bank transfer within Thailand?</strong>
+      <a href={`mailto:${contact.email}?subject=Bank%20transfer%20details`}>Email us</a> and we’ll send you the rescue’s bank details.
+    </p>
+  )}
+</div>

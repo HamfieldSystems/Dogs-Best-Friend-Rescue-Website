@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { facebook, contact } from '../config/site';
+import { path } from '../config/paths';
+---
+<Base
+  title="Latest updates & contact"
+  description="Follow Dogs' Best Friend Rescue on Facebook for the latest rescue stories and photos, or get in touch by email."
+  current="contact"
+>
+  <section class="hero">
+    <div class="narrow">
+      <p class="eyebrow">Updates &amp; contact</p>
+      <h1>See the dogs and get in touch</h1>
+      <p class="lead">
+        The rescue shares its news, new arrivals and day-to-day life at the shelter on Facebook. That’s the best place to see
+        what’s happening right now.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="narrow">
+      <div class="card fb-card">
+        <h2>Latest news on Facebook</h2>
+        <p>Rescue stories, photos, dogs looking for homes and urgent appeals are all posted on our Facebook page. You can also send us a message there.</p>
+        <a class="btn btn-donate" href={facebook.url} rel="noopener">Open our Facebook page</a>
+        <p style="margin:0"><small>{facebook.handle}</small></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow">
+      <h2>Other ways to reach us</h2>
+      <p><strong>Email:</strong> <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+      {contact.phone.confirmed && (
+        <p><strong>For help with an animal, call:</strong> <a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a></p>
+      )}
+      {contact.postalAddress.confirmed && (
+        <p><strong>Post (mail only):</strong><br />{contact.postalAddress.lines.map((l) => (<>{l}<br /></>))}</p>
+      )}
+      <p>
+        We’re a very small team caring for a lot of dogs, so replies can take a little while. Thank you for your patience.
+      </p>
+
+      <h3 style="margin-top:32px">Getting in touch about…</h3>
+      <ul class="checklist">
+        <li><strong>Adopting a dog</strong> – ask which dogs are ready for a home. All adopters go through careful checks.</li>
+        <li><strong>Flying with a dog</strong> – travelling to the USA, Canada or Europe? Send us your travel date, airline and destination.</li>
+        <li><strong>Volunteering</strong> – visits are by appointment only, so please get in touch first.</li>
+        <li><strong>Giving</strong> – see <a href={path('/donate/')}>how to donate</a>, or ask us about bank transfers.</li>
+      </ul>
+    </div>
+  </section>
+</Base>

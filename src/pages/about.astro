@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import DogGallery from '../components/DogGallery.astro';
+import { path } from '../config/paths';
+import peter from '../assets/photos/peter.jpg';
+import rambo from '../assets/photos/rambo.jpg';
+---
+<Base
+  title="About"
+  description="The story of Dogs' Best Friend Rescue Association: who runs it, how it began, and what it does for the street dogs of Ratchaburi, Thailand."
+  current="about"
+>
+  <section class="hero">
+    <div class="narrow">
+      <p class="eyebrow">About us</p>
+      <h1>A small rescue doing difficult work</h1>
+      <p class="lead">
+        Dogs’ Best Friend Rescue Association is a non-profit animal welfare organisation based in Ratchaburi, Thailand.
+        We rescue, rehabilitate and rehome stray, unloved and unwanted dogs.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Where it all began</p>
+        <h2>Peter’s story</h2>
+        <p>
+          Peter first started rescuing dogs in Thailand when he and his wife Khung discovered Beagle puppies being dumped at local
+          markets because they did not sell or had health problems. He rescued over 50 of these “dumpster puppies” and found loving homes for them.
+        </p>
+        <p>
+          He then volunteered for over a year as part of a reconstruction crew at a temple shelter, before helping to reduce street dog
+          numbers through catch, sterilise and release work.
+        </p>
+        <p>
+          In 2016 Peter started fostering dogs until new families could be found. It isn’t always possible to rehome dogs with difficult
+          health or behaviour problems, so the number of dogs at his home grew.
+        </p>
+        <p>
+          To give the dogs more room, and the neighbours some peace, he rented farmland away from the city and started a shelter where the
+          dogs could live more freely. That was the start of Dogs’ Best Friend Rescue Association in Ratchaburi.
+        </p>
+        <blockquote>Peter’s dream is to help those who are suffering live a more comfortable life.</blockquote>
+      </div>
+      <Image src={peter} alt="Peter and Khung standing on a city street, Khung holding a small black fluffy dog" widths={[400, 720]} sizes="(min-width: 820px) 45vw, 100vw" />
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow">
+      <h2>What we do</h2>
+      <ul class="checklist">
+        <li><strong>Rescue</strong> sick, injured and unwanted dogs, to end their suffering on the streets.</li>
+        <li><strong>Treat</strong> every dog: a wellness check, vet treatment and the care they need to recover.</li>
+        <li><strong>Sterilise</strong> every dog before rehoming, to help reduce the number of street dogs.</li>
+        <li><strong>Rehome</strong> dogs when they’re ready, with careful checks on adopters.</li>
+        <li><strong>Give a home for life</strong> at the shelter to dogs who can’t be rehomed because of their health or behaviour.</li>
+      </ul>
+      <p>
+        Our hope is to see an end to the suffering of soi dogs on the streets of Thailand, and to help the local community with
+        sterilisation and wellness checks.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="wrap split">
+      <Image src={rambo} alt="Rambo, a black and tan puppy, walking across the dirt at the shelter" widths={[480, 960]} sizes="(min-width: 820px) 45vw, 100vw" />
+      <div>
+        <h2>Some go on to new homes</h2>
+        <p>
+          Rambo was one of the lucky ones. He was rescued, cared for, and adopted by a family in America. Dogs from the rescue have
+          travelled to new families abroad with the help of flight volunteers.
+        </p>
+        <p>Others stay at the shelter for good. Both need the same daily care.</p>
+        <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Some of the dogs we’ve cared for</h2>
+      <DogGallery />
+    </div>
+  </section>
+</Base>

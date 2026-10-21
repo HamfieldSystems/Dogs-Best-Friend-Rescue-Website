@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import bella from '../assets/photos/bella.jpg';
+import angus from '../assets/photos/angus.jpg';
+import pip from '../assets/photos/pip.jpg';
+import macey from '../assets/photos/macey.jpg';
+import tux from '../assets/photos/tux.jpg';
+import zoe from '../assets/photos/zoe.jpg';
+import charcoal from '../assets/photos/charcoal.jpg';
+import missySox from '../assets/photos/missy-and-sox.jpg';
+
+// Dogs shown on the rescue's adoption and sponsor pages in 2022.
+const dogs = [
+  { name: 'Bella', img: bella, alt: 'Bella, a black and tan puppy, looking up at the camera' },
+  { name: 'Angus', img: angus, alt: 'Angus, a fluffy brown puppy sitting on a cushion' },
+  { name: 'Charcoal', img: charcoal, alt: 'Charcoal, a black dog with big upright ears, sitting on a tiled floor' },
+  { name: 'Pip', img: pip, alt: 'Pip, a black and tan puppy standing on a bed' },
+  { name: 'Macey', img: macey, alt: 'Macey, a slim black young dog with an orange collar' },
+  { name: 'Tux', img: tux, alt: 'Tux, a black dog with floppy ears resting his chin on a bench' },
+  { name: 'Zoe', img: zoe, alt: 'Zoe, a black puppy lying on a wooden bench' },
+  { name: 'Missy & Sox', img: missySox, alt: 'Missy and Sox, two black dogs playing together by a fence' },
+];
+---
+<ul class="dogs">
+  {dogs.map((d) => (
+    <li>
+      <figure>
+        <Image src={d.img} alt={d.alt} widths={[240, 400]} sizes="(min-width: 700px) 260px, 45vw" />
+        <figcaption>{d.name}</figcaption>
+      </figure>
+    </li>
+  ))}
+</ul>

@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { path } from '../config/paths';
+---
+<Base title="Page not found">
+  <section class="hero">
+    <div class="narrow">
+      <h1>Sorry, that page has wandered off</h1>
+      <p class="lead">The page you were looking for isn’t here.</p>
+      <div class="btn-row">
+        <a class="btn btn-outline" href={path('/')}>Go to the home page</a>
+        <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>
+      </div>
+    </div>
+  </section>
+</Base>

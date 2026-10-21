@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import GiveBox from '../components/GiveBox.astro';
+import { facebook, contact } from '../config/site';
+import { path } from '../config/paths';
+import charcoal from '../assets/photos/charcoal.jpg';
+import tux from '../assets/photos/tux.jpg';
+---
+<Base
+  title="Help keep the rescue running"
+  description="How your donation keeps Dogs' Best Friend Rescue going: vet care, food, shelter running costs and a carer's wage. Give once or every month."
+  current="donate"
+>
+  <section class="hero">
+    <div class="narrow">
+      <p class="eyebrow">Donate</p>
+      <h1>Help keep the rescue running</h1>
+      <p class="lead">
+        The dogs at the shelter need looking after every day, not just when there’s an emergency. Regular support is what keeps
+        the gates open, the bowls full and the vet bills paid.
+      </p>
+      <p><a class="btn btn-donate" href="#give">Give now</a></p>
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="wrap">
+      <h2>What your gift pays for</h2>
+      <div class="grid grid-2" style="margin-top:20px">
+        <div class="card">
+          <span class="icon" aria-hidden="true">🩺</span>
+          <h3>Vet treatment, medication and emergencies</h3>
+          <p>
+            Many of the dogs arrive sick or injured. They need check-ups, treatment, medicines, parasite prevention and,
+            sometimes, surgery. Emergencies don’t wait for a fundraiser.
+          </p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">🥣</span>
+          <h3>Food for the dogs</h3>
+          <p>Every dog at the shelter has to be fed every day. It’s the biggest, most constant need, and it never takes a month off.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">💡</span>
+          <h3>Electricity and shelter running costs</h3>
+          <p>Electricity, fencing, leads, harnesses and all the other everyday costs. These keep the dogs safe and the shelter working.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">🤝</span>
+          <h3>A monthly wage for a carer</h3>
+          <p>One staff member helps care for the animals: feeding, cleaning, giving medicines and keeping an eye on every dog. Their wage has to be paid every month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Why monthly gifts matter most</h2>
+        <p>
+          One-off donations often come in when people see an emergency. They’re a huge help. But the shelter’s bills arrive every month,
+          whatever happens.
+        </p>
+        <p>
+          A regular gift, even a small one, lets the rescue know what’s coming in. That means planning food orders, booking vet care
+          and paying the carer without worrying about next month.
+        </p>
+        <ul class="checklist">
+          <li>Predictable money for predictable costs</li>
+          <li>Less time spent asking for emergency help</li>
+          <li>More time spent with the dogs</li>
+        </ul>
+      </div>
+      <Image src={tux} alt="Tux, a black rescue dog with floppy ears, resting his chin on a wooden bench" widths={[480, 900]} sizes="(min-width: 820px) 45vw, 100vw" />
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="narrow">
+      <GiveBox heading="Give to the dogs" />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <Image src={charcoal} alt="Charcoal, a black dog with large upright ears, sitting on a tiled floor wearing a collar" widths={[330]} sizes="330px" style="max-width:330px;margin-inline:auto" />
+      <div>
+        <p class="eyebrow">What vet care can mean</p>
+        <h2>Charcoal’s legs</h2>
+        <p>
+          Charcoal was dumped at a temple as a puppy with her brother Noodles and grew up in foster care. She has luxating patellas,
+          which is why her back legs are wonky. It never slowed her down.
+        </p>
+        <p>
+          In 2022 the rescue estimated her surgery and physical therapy at 40,000 to 50,000 baht. That’s the kind of cost a small rescue
+          faces on top of the everyday bills, and why steady support matters.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-brown">
+    <div class="wrap">
+      <h2>Can’t give money right now?</h2>
+      <div class="grid grid-3">
+        <div><h3>Share</h3><p>Share the rescue’s <a href={facebook.url} rel="noopener">Facebook posts</a> with friends who love dogs.</p></div>
+        <div><h3>Fly with a dog</h3><p>Flying to the USA, Canada or Europe? <a href={path('/contact/')}>Tell us</a> your date, airline and destination. An adopted dog may be able to travel with you.</p></div>
+        <div><h3>Ask about something specific</h3><p>Want to pay for a particular item or a particular dog’s care? <a href={`mailto:${contact.email}`}>Email us</a>.</p></div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import DogGallery from '../components/DogGallery.astro';
+import { facebook } from '../config/site';
+import { path } from '../config/paths';
+import happy from '../assets/photos/happy.jpg';
+import peter from '../assets/photos/peter.jpg';
+import rambo from '../assets/photos/rambo.jpg';
+---
+<Base current="home">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Dog rescue · Ratchaburi, Thailand</p>
+        <h1>Helping the street dogs of Thailand, one dog at a time.</h1>
+        <p class="lead">
+          Dogs’ Best Friend Rescue takes in sick, injured and unwanted dogs, treats them, and gives them a safe place to live.
+          Some find new families. Others stay with us for life.
+        </p>
+        <p>We’re a small rescue. Your support pays for the food, vet care and daily work that keeps the shelter going.</p>
+        <div class="btn-row">
+          <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>
+          <a class="btn btn-outline" href={facebook.url} rel="noopener">See the dogs on Facebook</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <Image src={happy} alt="Happy, a tan rescue dog with a big smile, sitting on grass with a red lead" widths={[480, 800, 1000]} sizes="(min-width: 860px) 45vw, 100vw" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="wrap">
+      <p class="eyebrow">Where your money goes</p>
+      <h2>Running a shelter costs money every single day</h2>
+      <p class="lead narrow" style="margin-inline:0">
+        Rescue isn’t only about emergencies. The dogs need feeding, treating and caring for every day of the year,
+        whether or not anyone is donating that month.
+      </p>
+      <div class="grid grid-4" style="margin-top:24px">
+        <div class="card"><span class="icon" aria-hidden="true">🩺</span><h3>Vet care</h3><p>Treatment, medication and emergencies for sick and injured dogs.</p></div>
+        <div class="card"><span class="icon" aria-hidden="true">🥣</span><h3>Food</h3><p>Feeding every dog at the shelter, every day.</p></div>
+        <div class="card"><span class="icon" aria-hidden="true">💡</span><h3>Shelter running costs</h3><p>Electricity and the everyday costs of keeping the shelter going.</p></div>
+        <div class="card"><span class="icon" aria-hidden="true">🤝</span><h3>A carer’s wage</h3><p>Monthly wages for the staff member who helps look after the dogs.</p></div>
+      </div>
+      <p style="margin-top:28px"><a class="btn btn-donate" href={path('/donate/')}>See how you can help</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <Image src={peter} alt="Peter and Khung standing on a city street, Khung holding a small black fluffy dog" widths={[400, 720]} sizes="(min-width: 820px) 45vw, 100vw" />
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2>Started by Peter and Khung</h2>
+        <p>
+          Peter first started rescuing dogs in Thailand when he and his wife Khung found Beagle puppies being dumped at local
+          markets because they hadn’t sold or had health problems. He rescued over 50 of those puppies and found homes for them.
+        </p>
+        <p>
+          From 2016 Peter fostered dogs at home. Not every dog can be rehomed, and the number at home grew, so he rented farmland
+          away from the city where the dogs could live more freely. That became Dogs’ Best Friend Rescue in Ratchaburi.
+        </p>
+        <a href={path('/about/')}>Read our story</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sand">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">A rescue story</p>
+        <h2>Rambo</h2>
+        <p>
+          Rambo was one of the more fortunate rescues. After his care at Dogs’ Best Friend Rescue, he was adopted and now lives
+          with his family in America.
+        </p>
+        <p>Not every dog has an ending like Rambo’s, but every one of them gets fed, treated and cared for, thanks to people who give.</p>
+        <a class="btn btn-donate" href={path('/donate/')}>Help the next dog</a>
+      </div>
+      <Image src={rambo} alt="Rambo, a black and tan puppy, walking across the dirt at the shelter" widths={[480, 960]} sizes="(min-width: 820px) 45vw, 100vw" />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Some of the dogs we’ve cared for</p>
+      <h2>Real dogs, real care</h2>
+      <p>These are some of the dogs the rescue has looked after. For the dogs at the shelter right now, follow us on Facebook.</p>
+      <DogGallery />
+      <p style="margin-top:24px"><a href={facebook.url} rel="noopener">See today’s dogs on Facebook →</a></p>
+    </div>
+  </section>
+
+  <section class="section-brown">
+    <div class="wrap">
+      <h2>Other ways to help</h2>
+      <div class="grid grid-3">
+        <div>
+          <h3>Share us</h3>
+          <p>Follow and share the rescue’s <a href={facebook.url} rel="noopener">Facebook posts</a>. It costs nothing and helps more people find the dogs.</p>
+        </div>
+        <div>
+          <h3>Adopt</h3>
+          <p>Looking for a dog? <a href={path('/contact/')}>Get in touch</a> to ask which dogs are ready for a home.</p>
+        </div>
+        <div>
+          <h3>Fly with a dog</h3>
+          <p>Travelling from Thailand to the USA, Canada or Europe? You may be able to help an adopted dog reach their new family. <a href={path('/contact/')}>Tell us your travel plans</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,106 @@
+---
+import { Image } from 'astro:assets';
+import { site, facebook, contact, donations } from '../config/site';
+import { path } from '../config/paths';
+import logo from '../assets/photos/logo-mark.png';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: 'home' | 'donate' | 'about' | 'contact';
+}
+
+const { title, description = site.description, current } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | Dog rescue in Ratchaburi, Thailand`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(path('/og-image.jpg'), Astro.site);
+
+const nav = [
+  { key: 'home', href: path('/'), label: 'Home' },
+  { key: 'about', href: path('/about/'), label: 'About' },
+  { key: 'contact', href: path('/contact/'), label: 'Updates & contact' },
+];
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={path('/favicon.png')} />
+    <link rel="apple-touch-icon" href={path('/apple-touch-icon.png')} />
+    <meta name="theme-color" content="#3d2416" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {!donations.approved && (
+      <div class="preview-banner" role="note">
+        Preview: online donation links are switched off until the rescue confirms them.
+      </div>
+    )}
+
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={path('/')}>
+          <Image src={logo} alt="" width={56} height={48} loading="eager" />
+          <span>Dogs’ Best Friend<small>Rescue · Thailand</small></span>
+        </a>
+        <nav aria-label="Main">
+          <ul>
+            {nav.map((item) => (
+              <li>
+                <a href={item.href} aria-current={current === item.key ? 'page' : undefined}>{item.label}</a>
+              </li>
+            ))}
+            <li>
+              <a class="btn btn-donate btn-small" href={path('/donate/')} aria-current={current === 'donate' ? 'page' : undefined}>
+                Donate
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-name">{site.legalName}</p>
+          <p>A small dog rescue and shelter in {site.location}.</p>
+        </div>
+        <div>
+          <p><strong>Latest news &amp; photos</strong><br /><a href={facebook.url} rel="noopener">Follow us on Facebook</a></p>
+          <p><strong>Email</strong><br /><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+        </div>
+        <div>
+          <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>
+        </div>
+      </div>
+      <div class="wrap footer-small">
+        <p>© {year} {site.legalName}.</p>
+      </div>
+    </footer>
+
+    {current !== 'donate' && (
+      <div class="mobile-donate">
+        <a class="btn btn-donate" href={path('/donate/')}>Donate to the dogs</a>
+      </div>
+    )}
+  </body>
+</html>
