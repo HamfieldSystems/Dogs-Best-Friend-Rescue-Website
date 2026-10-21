@@ -30,6 +30,11 @@ Everything on the site came from the rescue's own website as archived in 2022, t
 - [ ] Is the rescue still doing **adoptions** and **flight volunteers** (USA, Canada, Europe)? Are **volunteer visits** still by appointment only?
 - [ ] Does the rescue still run, or want to mention, the **Ratchaburi sterilisation work**? A Facebook post mentions raising 100,000 THB for it, but we couldn't read the full post, so the site doesn't mention it.
 
+## Membership and partners (found on the 2022 site, not used on the new one)
+
+- [ ] **Membership.** In 2022 the Association offered yearly membership at ฿1,000 (Pups, under 18), ฿2,000 (Chihuahua), ฿5,000 (Bulldog) and ฿10,000 (Great Dane). Benefits included a certificate, a monthly newsletter, an AGM invitation and partner offers. The new site leaves it out because newsletters and AGMs create admin work. Does membership still exist? If it does, the simplest option would be one line on the donate page that says "ask us about membership".
+- [ ] **Partners.** The 2022 site thanked **Floyd Felines & Friends** and **Cibes Lift Thailand** (which provided recycled crates for dog beds and climbing equipment). Are they still partners, and would they like to be thanked on the site? This would help build trust.
+
 ## Photos
 
 - [ ] All photos come from the rescue's own 2022 website: Happy, Rambo, Charcoal, Bella, Angus, Pip, Macey, Tux, Zoe, Missy & Sox, and Peter and Khung. Are you happy for them to be used? Would you like to swap any for newer photos?
