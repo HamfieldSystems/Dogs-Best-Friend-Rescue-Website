@@ -23,11 +23,11 @@ const steps = [
   description="Join Dogs' Best Friend Rescue Association. Four levels of yearly membership, from The Pups to The Great Dane."
   current="membership"
 >
-  <section class="hero">
+  <section class="hero hero-bleed">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow"><Icon name="award" size={18} /> Membership</p>
-        <h1>Become a member of the Association</h1>
+        <span class="chip"><Icon name="award" size={16} /> Membership · Four yearly levels</span>
+        <h1>Become a member of <span class="accent">the Association</span></h1>
         <p class="lead">We formed an Association so the wider community can make a difference for the lives of street dogs in Thailand.</p>
         <h3>A gift that does good</h3>
         <p>Looking for a unique gift for someone special? Want to be involved in animal rescue, or just love dogs? Come and join our community.</p>
@@ -35,18 +35,18 @@ const steps = [
           <a class="btn btn-donate" href="#levels"><Icon name="award" size={20} /> Choose your level</a>
         </div>
       </div>
-      <div class="hero-photo">
+      <div class="hero-photo bleed">
         <Image src={mousie} alt="Mousie, a brown and black puppy with big ears, on the first day at the rescue" widths={[400, 800]} sizes="(min-width: 900px) 45vw, 100vw" loading="eager" />
         <span class="photo-tag"><Icon name="heart" size={18} /> Mousie, day one</span>
       </div>
     </div>
   </section>
 
-  <section class="section-sand" id="levels">
+  <section class="section-tint" id="levels">
     <div class="wrap">
       <div class="section-head center">
         <p class="eyebrow"><Icon name="paw-print" size={18} /> Four yearly levels</p>
-        <h2>Choose your level</h2>
+        <h2>Choose <span class="accent">your level</span></h2>
         <p>Doggy themed, of course.</p>
       </div>
       <div class="grid grid-4">
@@ -70,7 +70,7 @@ const steps = [
     <div class="wrap">
       <div class="section-head center">
         <p class="eyebrow"><Icon name="circle-help" size={18} /> How to join</p>
-        <h2>Three simple steps</h2>
+        <h2>Three <span class="accent">simple steps</span></h2>
       </div>
       <ol class="steps">
         {steps.map((s) => (
@@ -87,11 +87,11 @@ const steps = [
     </div>
   </section>
 
-  <section class="section-brown">
+  <section class="section-warm">
     <div class="wrap split">
       <div>
         <p class="eyebrow"><Icon name="heart-pulse" size={18} /> Free Bulldog membership</p>
-        <h2>Sponsor a dog instead?</h2>
+        <h2>Sponsor a dog <span class="accent">instead?</span></h2>
         <p>Sponsoring a dog also gives you free Bulldog membership for as long as you sponsor.</p>
       </div>
       <div>

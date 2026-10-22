@@ -25,11 +25,11 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
   description="How your donation keeps Dogs' Best Friend Rescue going: vet care, food, shelter running costs and a carer's wage. Give once or every month."
   current="donate"
 >
-  <section class="hero">
+  <section class="hero has-overlap">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow"><Icon name="heart" size={18} /> Donate</p>
-        <h1>Help keep the rescue running</h1>
+        <span class="chip"><Icon name="heart" size={16} /> Donate · Every gift helps</span>
+        <h1>Help keep the <span class="accent">rescue running</span></h1>
         <p class="lead">The dogs need looking after every day, not just when there’s an emergency.</p>
         <p>Regular support keeps the gates open, the bowls full and the vet bills paid.</p>
         <ul class="trust-line">
@@ -42,13 +42,13 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
     </div>
   </section>
 
-  <ImpactRibbon />
+  <ImpactRibbon overlap />
 
   <section>
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow"><Icon name="hand-coins" size={18} /> Where your money goes</p>
-        <h2>What your gift pays for</h2>
+        <h2>What your gift <span class="accent">pays for</span></h2>
       </div>
       <div class="grid grid-2">
         {costs.map((c) => (
@@ -62,11 +62,11 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
     </div>
   </section>
 
-  <section class="section-sand">
+  <section class="section-tint">
     <div class="wrap split">
       <div>
         <p class="eyebrow"><Icon name="repeat" size={18} /> Monthly giving</p>
-        <h2>Why monthly gifts matter most</h2>
+        <h2>Why monthly gifts <span class="accent">matter most</span></h2>
         <p>One-off gifts often arrive when people see an emergency, and they’re a huge help. But the shelter’s bills come every month, whatever happens.</p>
         <h3>A small regular gift lets us plan</h3>
         <p>Knowing what’s coming in means food can be ordered, vet care booked and the carer paid without worrying about next month.</p>
@@ -85,18 +85,18 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow"><Icon name="gift" size={18} /> Or pick something specific</p>
-        <h2>What a gift can buy</h2>
+        <h2>What a gift <span class="accent">can buy</span></h2>
       </div>
       <GiftList />
     </div>
   </section>
 
-  <section class="section-sand">
+  <section class="section-warm">
     <div class="wrap split">
       <Image src={charcoal} alt="Charcoal, a black dog with large upright ears, sitting on a tiled floor wearing a collar" widths={[330]} sizes="330px" style="max-width:330px;margin-inline:auto" />
       <div>
         <p class="eyebrow"><Icon name="stethoscope" size={18} /> What vet care can mean</p>
-        <h2>Charcoal’s wonky legs</h2>
+        <h2>Charcoal’s <span class="accent">wonky legs</span></h2>
         <p>Charcoal was dumped at a temple as a puppy with her brother Noodles, and grew up in foster care. She has luxating patellas, which is why her back legs are wonky. It never slowed her down.</p>
         <h3>The cost of one operation</h3>
         <p>In 2022 the rescue estimated her surgery and physical therapy at 40,000 to 50,000 baht. That’s the kind of bill a small rescue faces on top of everyday costs.</p>
@@ -109,7 +109,7 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
     <div class="wrap split">
       <div>
         <p class="eyebrow"><Icon name="circle-help" size={18} /> Questions</p>
-        <h2>Before you give</h2>
+        <h2>Before <span class="accent">you give</span></h2>
         <div class="faq">
           <details>
             <summary>Where does my money go? <Icon name="chevron-down" size={22} /></summary>
@@ -144,11 +144,11 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
     </div>
   </section>
 
-  <section class="section-brown">
+  <section class="section-tint">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow"><Icon name="hand-heart" size={18} /> Can’t give money right now?</p>
-        <h2>You can still help</h2>
+        <h2>You can <span class="accent">still help</span></h2>
       </div>
       <div class="grid grid-3">
         <a class="card card-link" href={facebook.url} rel="noopener">

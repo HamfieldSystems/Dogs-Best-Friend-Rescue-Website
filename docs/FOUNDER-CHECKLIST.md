@@ -23,7 +23,7 @@ The preview already shows all the contact and donation details recovered from th
 ## Contact
 
 - [ ] **Email.** The site shows `dogsbfrescue@gmail.com` as the main address and `k9dras@gmail.com` as a second one. Are both still monitored? Should one be dropped?
-- [ ] **Phone** `088 890 1926` ("for help with an animal"). It's shown on the contact page and in the footer. Still correct? To hide it, set `phone.show: false`.
+- [ ] **Phone** `088 890 1926` ("for help with an animal"). It's shown in the bar across the top of every page, on the contact page and in the footer. Still correct? To hide it everywhere, set `phone.show: false`.
 - [ ] **Postal address** (Nonthaburi, mail only). It's shown on the contact page. Still correct, and are you happy for it to be public? To hide it, set `postalAddress.show: false`.
 
 ## Activities

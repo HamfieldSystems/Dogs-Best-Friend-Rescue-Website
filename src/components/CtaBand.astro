@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+import { path } from '../config/paths';
+
+interface Props {
+  lead?: string;
+  accent?: string;
+  text?: string;
+  secondary?: { href: string; label: string };
+}
+const {
+  lead = 'One gift.',
+  accent = 'One dog cared for.',
+  text = 'Food, vet care and a carer’s wage, every month. Every gift goes to the daily care of the dogs.',
+  secondary = { href: path('/membership/'), label: 'Become a member' },
+} = Astro.props;
+---
+<section class="cta-band">
+  <div class="wrap">
+    <h2>{lead} <span class="accent">{accent}</span></h2>
+    <p class="lead">{text}</p>
+    <div class="btn-row">
+      <a class="btn btn-donate" href={path('/donate/')}><Icon name="heart" size={20} /> Donate today</a>
+      <a class="btn btn-outline" href={secondary.href}>{secondary.label}</a>
+    </div>
+  </div>
+</section>

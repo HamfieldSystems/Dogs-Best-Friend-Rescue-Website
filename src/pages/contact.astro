@@ -1,6 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
 import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import dahlia from '../assets/photos/dahlia.jpg';
+import wrinkles from '../assets/photos/wrinkles.jpg';
+import penny from '../assets/photos/penny.jpg';
+import happy from '../assets/photos/happy.jpg';
+import tux from '../assets/photos/tux.jpg';
+import bella from '../assets/photos/bella.jpg';
+
+const grid = [
+  { img: happy, alt: 'Happy, a tan dog with a big smile, sitting on grass' },
+  { img: dahlia, alt: 'Dahlia, a black dog lying on a wooden bench' },
+  { img: wrinkles, alt: 'Wrinkles, a pale cream dog with a pink tongue' },
+  { img: bella, alt: 'Bella, a black and tan puppy looking up' },
+  { img: penny, alt: 'Penny, a brindle brown dog' },
+  { img: tux, alt: 'Tux, a black dog resting his chin on a bench' },
+];
 import { facebook, contact, olderSocials } from '../config/site';
 import { path } from '../config/paths';
 
@@ -18,11 +35,11 @@ const topics = [
   description="Follow Dogs' Best Friend Rescue on Facebook for the latest rescue stories and photos, or get in touch by email or phone."
   current="contact"
 >
-  <section class="hero">
+  <section class="hero hero-bleed">
     <div class="wrap split">
       <div>
-        <p class="eyebrow"><Icon name="message-circle" size={18} /> Updates &amp; contact</p>
-        <h1>See the dogs and get in touch</h1>
+        <span class="chip"><Icon name="message-circle" size={16} /> Updates &amp; contact</span>
+        <h1>See the dogs and <span class="accent">get in touch</span></h1>
         <p class="lead">News, new arrivals and day-to-day life at the shelter are shared on Facebook.</p>
         <p>It’s the best place to see what’s happening right now, and you can message us there too.</p>
         <div class="btn-row">
@@ -30,7 +47,7 @@ const topics = [
         </div>
         <p class="muted" style="margin-top:12px">{facebook.handle}</p>
       </div>
-      <div class="card">
+      <div class="card bleed" style="box-shadow:var(--shadow)">
         <h2 style="font-size:1.6rem">Other ways to reach us</h2>
         <ul class="contact-list">
           <li>
@@ -59,11 +76,11 @@ const topics = [
     </div>
   </section>
 
-  <section class="section-sand">
+  <section class="section-tint">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow"><Icon name="circle-help" size={18} /> Getting in touch about…</p>
-        <h2>How can we help?</h2>
+        <h2>How can <span class="accent">we help?</span></h2>
       </div>
       <div class="grid grid-3">
         {topics.map((t) => (
@@ -77,4 +94,26 @@ const topics = [
       </div>
     </div>
   </section>
+
+  <section>
+    <div class="wrap split reverse">
+      <div class="photo-grid">
+        {grid.map((g) => (
+          <a href={facebook.url} rel="noopener" aria-label={`${g.alt.split(',')[0]}: see more on Facebook`}>
+            <Image src={g.img} alt={g.alt} widths={[240, 400]} sizes="(min-width: 860px) 15vw, 30vw" />
+          </a>
+        ))}
+      </div>
+      <div>
+        <p class="eyebrow"><Icon name="camera" size={18} /> Follow along</p>
+        <h2>New arrivals, recoveries <span class="accent">and happy days</span></h2>
+        <p>Facebook is where the rescue shares what’s happening at the shelter, week by week.</p>
+        <div class="btn-row">
+          <a class="btn btn-outline" href={facebook.url} rel="noopener"><Icon name="message-circle" size={20} /> Follow on Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
 </Base>
