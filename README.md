@@ -21,7 +21,7 @@ The site is evergreen: it explains who the rescue is and what running it costs, 
 - All contact and donation details recovered from the 2022 site are **shown**: PayPal buttons, gift prices, both emails, phone and postal address. They still need the founder's confirmation (see the checklist).
 - To switch every PayPal button off at once, set `donations.approved = false` in `src/config/site.ts`.
 - A `noindex` tag keeps search engines away until launch. Set `site.indexable = true` to remove it.
-- Nothing has been published, and no domain has been configured.
+- A staging copy is live at https://hamfieldsystems.github.io/Dogs-Best-Friend-Rescue-Website/ and redeploys on every push to `main`. No custom domain has been configured.
 
 ## Key files
 
@@ -29,6 +29,7 @@ The site is evergreen: it explains who the rescue is and what running it costs, 
 - `docs/FOUNDER-CHECKLIST.md` lists what the founder needs to confirm before launch
 - `docs/HANDOVER.md` covers ownership, free hosting (Cloudflare Pages / GitHub Pages) and maintenance
 - `docs/SOURCES.md` records where the content and photos came from
+- `docs/DESIGN.md` explains the design choices (fonts, colours, buttons, layout) and why
 
 ## Quick start
 
