@@ -1,7 +1,9 @@
-# Manual-only on purpose: nothing is published until someone presses "Run workflow".
+# Publishes the site every time main changes. "Run workflow" still works for a manual redeploy.
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:

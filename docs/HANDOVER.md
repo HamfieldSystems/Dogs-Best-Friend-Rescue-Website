@@ -29,11 +29,15 @@ After that, every change merged to `main` publishes itself within about a minute
 
 ## 3. Hosting option B: GitHub Pages
 
-A workflow is included at `.github/workflows/deploy.yml`. It **only runs when started by hand**, so nothing is published by accident.
+This is what the staging site uses now: https://hamfieldsystems.github.io/Dogs-Best-Friend-Rescue-Website/
 
-1. Repo → **Settings → Pages → Source: GitHub Actions**.
-2. Repo → **Actions → Deploy to GitHub Pages → Run workflow**.
-3. Without a custom domain, the site appears at `https://<owner>.github.io/<repo>/`. The workflow sets the sub-path for you.
+The workflow at `.github/workflows/deploy.yml` **republishes the site automatically every time `main` changes**, about a minute after each change. To redeploy without a change, go to **Actions → Deploy to GitHub Pages → Run workflow**.
+
+To set it up on a new repo:
+
+1. On a free GitHub account the repo must be **public**. Pages for private repos needs a paid plan.
+2. Repo → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. Push to `main`, or run the workflow by hand. Without a custom domain, the site appears at `https://<owner>.github.io/<repo>/`. The workflow sets the sub-path for you.
 
 ## 4. Going live checklist
 
