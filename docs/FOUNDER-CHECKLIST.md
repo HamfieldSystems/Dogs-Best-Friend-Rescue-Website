@@ -40,6 +40,27 @@ The preview already shows all the contact and donation details recovered from th
 - [ ] **Outreach.** The donate page quotes the 2022 statement that leftover funds go to education in local schools, sterilisation clinics and Freedom Flight costs. The About page includes the vision of mobile sterilisation clinics. Are these still accurate?
 - [ ] **Older social accounts.** The contact page links `facebook.com/K9DRAS` and `twitter.com/K9DRAS`. Are these still active, or should the links be removed?
 
+## Big numbers ribbon (home, donate and about pages)
+
+Two numbers are already verified from the 2022 site and are shown: **since 2016** (Peter started fostering) and **50+** (dumped puppies Peter rescued and rehomed). The rest show as "X+" with a "Number to confirm" tag. Rough, rounded-down totals are fine and still build trust ("200+" beats an exact figure nobody can check). Fill in whichever you can:
+
+- [ ] Dogs rescued in total (X+)
+- [ ] Dogs adopted into new homes (X+)
+- [ ] Dogs sterilised (X+)
+- [ ] Dogs vaccinated (X+)
+- [ ] Optional swaps if any of those are unknown: dogs living at the shelter for life, dogs flown to new homes abroad, countries dogs have flown to, years of Freedom Flights, local sterilisation clinic days
+
+Each number goes in `impact.stats` in `src/config/site.ts`. Before launch, set `impact.showPlaceholders: false` to hide any you couldn't confirm.
+
+## Photos needed (shown as striped "Photo needed" boxes)
+
+- [ ] **Home:** a wide shot of the shelter today, ideally with Peter or Khung
+- [ ] **About:** the shelter on the Ratchaburi farmland (fences, shade, dogs relaxing)
+- [ ] **Donate:** the carer at work: feeding time, giving medicine or cleaning the runs
+- [ ] **Get involved:** a foster dog at home; a dog in a travel crate or meeting its new family; a volunteer walking or playing with the dogs
+
+Phone photos are fine. Natural light and the dogs' faces matter more than polish.
+
 ## Photos
 
 - [ ] All photos come from the rescue's own 2022 website: the 15 dogs (Happy, Charcoal, Noodles, Bella, Angus, Pip, Macey, Tux, Zoe, Missy & Sox, Wrinkles, Oreo, Dahlia, Trixie, Penny), plus Rambo, Mousie (membership page), the cat and kitten photo from the Partners page, and Peter and Khung. Are you happy for them to be used? Would you like to swap any for newer photos?

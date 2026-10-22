@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { donations, contact, facebook } from '../config/site';
 
 interface Props {
@@ -7,49 +8,51 @@ interface Props {
 const { heading = 'Give to the dogs' } = Astro.props;
 const live = donations.approved;
 const hasMonthly = live && donations.monthly.url !== '';
+// The "one dog for a month" gift is the clearest single ask, so it gets its own button.
+const dogMonth = donations.gifts.find((g) => g.monthly && g.url);
+const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURIComponent(subject)}`;
 ---
 <div class="give-box" id="give">
   <h2>{heading}</h2>
-  <p>
-    Every gift goes to the day-to-day care of the dogs at the shelter. A regular monthly gift, however small,
-    helps most, because it lets the rescue plan ahead for food, vet bills and wages.
-  </p>
+  <p>Every gift goes to the daily care of the dogs at the shelter.</p>
 
   {live ? (
-    <div class="give-options">
-      {hasMonthly && (
-        <a class="btn btn-donate" href={donations.monthly.url} rel="noopener">{donations.monthly.label}</a>
-      )}
-      <a class={`btn ${hasMonthly ? 'btn-outline' : 'btn-donate'}`} href={donations.oneOff.url} rel="noopener">
-        {donations.oneOff.label}
-      </a>
-    </div>
+    <>
+      <div class="give-options">
+        {hasMonthly && (
+          <a class="btn btn-donate" href={donations.monthly.url} rel="noopener"><Icon name="repeat" size={20} /> {donations.monthly.label}</a>
+        )}
+        <a class={`btn ${hasMonthly ? 'btn-outline' : 'btn-donate'}`} href={donations.oneOff.url} rel="noopener">
+          <Icon name="heart" size={20} /> {donations.oneOff.label}
+        </a>
+        {dogMonth && (
+          <a class="btn btn-outline" href={dogMonth.url} rel="noopener">
+            <Icon name="paw-print" size={20} /> Care for one dog for a month · ฿{dogMonth.amount.toLocaleString('en-US')}
+          </a>
+        )}
+      </div>
+      <p class="secure-note"><Icon name="lock" size={16} /> Payments are handled by PayPal. The rescue never sees your card details.</p>
+    </>
   ) : (
-    <div class="give-options">
-      <span class="btn" aria-disabled="true">Online giving coming soon</span>
-      <a class="btn btn-outline" href={facebook.url} rel="noopener">Message us on Facebook</a>
-    </div>
+    <>
+      <div class="give-options">
+        <span class="btn" aria-disabled="true">Online giving coming soon</span>
+        <a class="btn btn-outline" href={facebook.url} rel="noopener"><Icon name="message-circle" size={20} /> Message us on Facebook</a>
+      </div>
+      <p class="secure-note">
+        We’re confirming our donation links before switching them on. Until then, please email
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+    </>
   )}
 
-  {!live && (
-    <p class="notice">
-      We’re confirming our online donation links with the rescue before switching them on.
-      Until then, please <a href={facebook.url} rel="noopener">message the rescue on Facebook</a> or email
-      <a href={`mailto:${contact.email}`}>{contact.email}</a> and they’ll tell you how to give.
-    </p>
-  )}
-
-  {live && !hasMonthly && (
-    <p>
-      <strong>Want to give every month?</strong>
-      <a href={`mailto:${contact.email}?subject=Monthly%20donation`}>Email us</a> and we’ll help you set up a regular gift.
-    </p>
-  )}
-
-  {donations.bankTransferOnRequest && (
-    <p>
-      <strong>Prefer a bank transfer within Thailand?</strong>
-      <a href={`mailto:${contact.email}?subject=Bank%20transfer%20details`}>Email us</a> and we’ll send you the rescue’s bank details.
-    </p>
-  )}
+  <ul class="give-notes">
+    {live && !hasMonthly && (
+      <li><Icon name="repeat" size={20} /><span><strong>Give every month.</strong> <a href={mail('Monthly donation')}>Email us</a> and we’ll help you set up a regular gift.</span></li>
+    )}
+    {donations.bankTransferOnRequest && (
+      <li><Icon name="landmark" size={20} /><span><strong>Bank transfer in Thailand?</strong> <a href={mail('Bank transfer details')}>Email us</a> for the rescue’s bank details.</span></li>
+    )}
+    <li><Icon name="gift" size={20} /><span><strong>Pay for something specific?</strong> <a href={mail('A specific gift')}>Tell us</a> what you’d like to cover.</span></li>
+  </ul>
 </div>

@@ -1,11 +1,15 @@
 ---
+import Icon from './Icon.astro';
 import { donations, contact } from '../config/site';
 
 const baht = (n: number) => `฿${n.toLocaleString('en-US')}`;
+// Matched to each 2022 gift by its order in src/config/site.ts.
+const icons = ['soup', 'pill', 'shield', 'bone', 'plane', 'plane-takeoff'];
 ---
-<div class="grid grid-3" style="margin-top:20px">
-  {donations.gifts.map((g) => (
-    <div class="card gift">
+<div class="grid grid-3">
+  {donations.gifts.map((g, i) => (
+    <div class={`card gift${g.monthly ? ' featured' : ''}`}>
+      <span class="icon-badge"><Icon name={icons[i] ?? 'gift'} size={28} /></span>
       <p class="gift-amount">{baht(g.amount)}{g.monthly && <span> a month</span>}</p>
       <h3>{g.title}</h3>
       <p>{g.text}</p>
@@ -17,4 +21,4 @@ const baht = (n: number) => `฿${n.toLocaleString('en-US')}`;
     </div>
   ))}
 </div>
-<p style="margin-top:16px"><small>Prices are the rescue’s {donations.pricesYear} estimates.</small></p>
+<p class="muted" style="margin-top:20px">Prices are the rescue’s {donations.pricesYear} estimates.</p>

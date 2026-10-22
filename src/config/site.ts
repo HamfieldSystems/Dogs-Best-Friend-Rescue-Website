@@ -46,6 +46,27 @@ export const contact = {
 };
 
 /**
+ * IMPACT NUMBERS — the "big numbers" ribbon on the home and donate pages.
+ * Give a stat a `value` once the founder confirms it. Until then the
+ * `placeholder` is shown with a "Number to confirm" tag.
+ * Set `showPlaceholders: false` before launch to hide any unconfirmed
+ * numbers and the "Photo needed" boxes.
+ */
+export const impact = {
+  showPlaceholders: true,
+  stats: [
+    // Verified: About page (2022), "In 2016, Peter started to foster dogs".
+    { icon: 'calendar-heart', value: '2016', placeholder: '', label: 'Caring for dogs since' },
+    // Verified: About page (2022), "He rescued over 50 dumpster puppies".
+    { icon: 'heart-handshake', value: '50+', placeholder: '', label: 'Dumped puppies rescued and rehomed by Peter' },
+    { icon: 'paw-print', value: '', placeholder: 'X+', label: 'Dogs rescued in total' },
+    { icon: 'house', value: '', placeholder: 'X+', label: 'Dogs adopted into new homes' },
+    { icon: 'scissors', value: '', placeholder: 'X+', label: 'Dogs sterilised' },
+    { icon: 'syringe', value: '', placeholder: 'X+', label: 'Dogs vaccinated' },
+  ],
+};
+
+/**
  * MEMBERSHIP — the yearly levels from the archived Membership page (2022).
  * People enquire by email; the rescue replies with payment details.
  */

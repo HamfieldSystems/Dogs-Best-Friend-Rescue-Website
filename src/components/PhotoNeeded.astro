@@ -1,0 +1,21 @@
+---
+// A visible gap where a real photo should go, with a note on exactly what to send.
+// Swap it for an <Image> once the rescue supplies the photo.
+import Icon from './Icon.astro';
+import { impact } from '../config/site';
+
+interface Props {
+  brief: string;
+  ratio?: string;
+}
+const { brief, ratio = '4 / 3' } = Astro.props;
+---
+{impact.showPlaceholders && (
+  <figure class="photo-needed" style={`aspect-ratio:${ratio}`}>
+    <Icon name="camera" size={36} />
+    <figcaption>
+      <strong>Photo needed</strong>
+      <span>{brief}</span>
+    </figcaption>
+  </figure>
+)}

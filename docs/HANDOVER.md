@@ -60,6 +60,7 @@ Only touch it when one of these changes:
 | Donation links, or turning giving on and off | `src/config/site.ts` |
 | Page wording | `src/pages/*.astro` (text sits between the HTML tags) |
 | Photos | replace the file in `src/assets/photos/` keeping the same name |
+| Big numbers ribbon | `impact` in `src/config/site.ts` |
 
 Small text edits can be made straight on github.com: open the file, click the pencil icon, then **Commit changes**. The host rebuilds the site automatically.
 

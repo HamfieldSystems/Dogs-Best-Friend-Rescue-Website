@@ -1,10 +1,31 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import DogGallery from '../components/DogGallery.astro';
+import ImpactRibbon from '../components/ImpactRibbon.astro';
+import PhotoNeeded from '../components/PhotoNeeded.astro';
 import { path } from '../config/paths';
 import peter from '../assets/photos/peter.jpg';
 import rambo from '../assets/photos/rambo.jpg';
+
+const timeline = [
+  { icon: 'store', title: 'The market puppies', text: 'Peter and Khung find Beagle puppies dumped at local markets because they hadn’t sold or were unwell. Peter rescues over 50 and finds them loving homes.' },
+  { icon: 'hammer', title: 'A year at a temple shelter', text: 'Peter volunteers for over a year on a reconstruction crew at a temple shelter, then helps reduce street dog numbers through catch, sterilise and release work.' },
+  { icon: 'house-heart', title: '2016: fostering at home', text: 'Peter starts fostering dogs until new families are found. Dogs with health or behaviour problems are harder to rehome, so the numbers at home grow.' },
+  { icon: 'trees', title: 'A shelter in Ratchaburi', text: 'To give the dogs more room, and the neighbours some peace, Peter rents farmland away from the city. Dogs’ Best Friend Rescue Association begins.' },
+];
+
+const work = [
+  { icon: 'siren', title: 'Rescue', text: 'Sick, injured and unwanted dogs, to end their suffering on the streets.' },
+  { icon: 'stethoscope', title: 'Treat', text: 'A wellness check, vet treatment, training and the care each dog needs to recover.' },
+  { icon: 'house', title: 'Foster', text: 'Time in a home for house training and getting used to people.' },
+  { icon: 'scissors', title: 'Sterilise', text: 'Every dog, before rehoming, to help reduce the number of street dogs.' },
+  { icon: 'house-heart', title: 'Rehome', text: 'Adopters go through strict screening and training in responsible animal care.' },
+  { icon: 'heart', title: 'A home for life', text: 'At the shelter, for dogs who can’t be rehomed because of their health or behaviour.' },
+  { icon: 'graduation-cap', title: 'Educate', text: 'Teaching safe, respectful animal care, so every stray feels safe, respected and loved.' },
+  { icon: 'syringe', title: 'Our vision', text: 'Helping the community run mobile sterilisation clinics and wellness checks, within reach of everyone.' },
+];
 ---
 <Base
   title="About"
@@ -12,82 +33,99 @@ import rambo from '../assets/photos/rambo.jpg';
   current="about"
 >
   <section class="hero">
-    <div class="narrow">
-      <p class="eyebrow">About us</p>
-      <h1>A small rescue doing difficult work</h1>
-      <p class="lead">
-        Dogs’ Best Friend Rescue Association is a non-profit animal welfare organisation based in Ratchaburi, Thailand.
-        We rescue, rehabilitate and rehome stray, unloved and unwanted dogs.
-      </p>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow"><Icon name="paw-print" size={18} /> About us</p>
+        <h1>A small rescue doing difficult work</h1>
+        <p class="lead">Dogs’ Best Friend Rescue Association is a non-profit animal welfare organisation in Ratchaburi, Thailand.</p>
+        <p>We rescue, rehabilitate and rehome stray, unloved and unwanted dogs.</p>
+      </div>
+      <div class="hero-photo">
+        <Image src={peter} alt="Peter and Khung standing on a city street, Khung holding a small black fluffy dog" widths={[400, 720]} sizes="(min-width: 900px) 45vw, 100vw" loading="eager" />
+        <span class="photo-tag"><Icon name="users-round" size={18} /> Peter &amp; Khung</span>
+      </div>
+    </div>
+  </section>
+
+  <ImpactRibbon />
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><Icon name="calendar-heart" size={18} /> Where it all began</p>
+        <h2>Peter’s story</h2>
+      </div>
+      <ol class="steps">
+        {timeline.map((t) => (
+          <li class="card">
+            <span class="icon-badge"><Icon name={t.icon} size={28} /></span>
+            <h3>{t.title}</h3>
+            <p>{t.text}</p>
+          </li>
+        ))}
+      </ol>
+      <blockquote class="pull-quote" style="margin-top:clamp(48px,7vw,88px)">
+        <p>“Peter’s dream is to help the suffering live a more comfortable life.”</p>
+      </blockquote>
     </div>
   </section>
 
   <section class="section-sand">
-    <div class="wrap split">
-      <div>
-        <p class="eyebrow">Where it all began</p>
-        <h2>Peter’s story</h2>
-        <p>
-          Peter first started rescuing dogs in Thailand when he and his wife Khung discovered Beagle puppies being dumped at local
-          markets because they did not sell or had health problems. He rescued over 50 of these “dumpster puppies” and found loving homes for them.
-        </p>
-        <p>
-          He then volunteered for over a year as part of a reconstruction crew at a temple shelter, before helping to reduce street dog
-          numbers through catch, sterilise and release work.
-        </p>
-        <p>
-          In 2016 Peter started fostering dogs until new families could be found. It isn’t always possible to rehome dogs with difficult
-          health or behaviour problems, so the number of dogs at his home grew.
-        </p>
-        <p>
-          To give the dogs more room, and the neighbours some peace, he rented farmland away from the city and started a shelter where the
-          dogs could live more freely. That was the start of Dogs’ Best Friend Rescue Association in Ratchaburi.
-        </p>
-        <blockquote>Peter’s dream is to help those who are suffering live a more comfortable life.</blockquote>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><Icon name="hand-heart" size={18} /> What we do</p>
+        <h2>From the street to a safe place</h2>
+        <p class="lead">Please help us work towards an end to the suffering of soi dogs on the streets of Thailand.</p>
       </div>
-      <Image src={peter} alt="Peter and Khung standing on a city street, Khung holding a small black fluffy dog" widths={[400, 720]} sizes="(min-width: 820px) 45vw, 100vw" />
+      <div class="grid grid-4">
+        {work.map((w) => (
+          <div class="card">
+            <span class="icon-badge"><Icon name={w.icon} size={28} /></span>
+            <h3>{w.title}</h3>
+            <p>{w.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="narrow">
-      <h2>What we do</h2>
-      <ul class="checklist">
-        <li><strong>Rescue</strong> sick, injured and unwanted dogs, to end their suffering on the streets.</li>
-        <li><strong>Treat</strong> every dog: a wellness check, vet treatment, training and the care they need to recover.</li>
-        <li><strong>Foster</strong> dogs in homes for house training and time with people, so each one goes to the right family.</li>
-        <li><strong>Sterilise</strong> every dog before rehoming, to help reduce the number of street dogs.</li>
-        <li><strong>Rehome</strong> dogs when they’re ready. Adopters go through a strict screening process and training in responsible animal care.</li>
-        <li><strong>Give a home for life</strong> at the shelter to dogs who can’t be rehomed because of their health or behaviour.</li>
-        <li><strong>Educate</strong>: work with the wider community to teach safe and respectful animal care, so every stray feels safe, respected and loved.</li>
-      </ul>
-      <h3>Our vision</h3>
-      <p>
-        To help the local community run mobile sterilisation clinics and wellness checks, so that care is within reach of
-        everyone. Please help us work towards an end to the suffering of soi dogs on the streets of Thailand.
-      </p>
-      <p><a href={path('/get-involved/#partners')}>Meet our partners</a> · <a href={path('/membership/')}>Join the Association</a></p>
+    <div class="wrap split">
+      <Image src={rambo} alt="Rambo, a black and tan puppy, walking across the dirt at the shelter" widths={[480, 960]} sizes="(min-width: 860px) 45vw, 100vw" />
+      <div>
+        <p class="eyebrow"><Icon name="plane" size={18} /> Happy endings</p>
+        <h2>Some go on to new homes</h2>
+        <p>Rambo was one of the lucky ones. He was rescued, cared for, and adopted by a family in America.</p>
+        <h3>Others stay for good</h3>
+        <p>Some dogs live at the shelter for the rest of their lives. Both need the same daily care.</p>
+        <div class="btn-row">
+          <a class="btn btn-donate" href={path('/donate/')}><Icon name="heart" size={20} /> Help keep the rescue running</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section-sand">
-    <div class="wrap split">
-      <Image src={rambo} alt="Rambo, a black and tan puppy, walking across the dirt at the shelter" widths={[480, 960]} sizes="(min-width: 820px) 45vw, 100vw" />
+    <div class="wrap split reverse">
+      <PhotoNeeded brief="The shelter on the Ratchaburi farmland: the fences, the shade, the dogs relaxing. Helps visitors picture where their money goes." ratio="16 / 10" />
       <div>
-        <h2>Some go on to new homes</h2>
-        <p>
-          Rambo was one of the lucky ones. He was rescued, cared for, and adopted by a family in America. Dogs from the rescue have
-          travelled to new families abroad with the help of flight volunteers.
+        <p class="eyebrow"><Icon name="map-pin" size={18} /> The shelter</p>
+        <h2>Room to live freely</h2>
+        <p>The shelter sits on rented farmland away from the city, so the dogs have space to run, rest and recover.</p>
+        <p class="chip-row">
+          <a class="text-link" href={path('/get-involved/#partners')}>Meet our partners <Icon name="arrow-right" size={18} /></a>
+          <a class="text-link" href={path('/membership/')}>Join the Association <Icon name="arrow-right" size={18} /></a>
         </p>
-        <p>Others stay at the shelter for good. Both need the same daily care.</p>
-        <a class="btn btn-donate" href={path('/donate/')}>Help keep the rescue running</a>
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2>Some of the dogs we’ve cared for</h2>
+      <div class="section-head">
+        <p class="eyebrow"><Icon name="dog" size={18} /> Our dogs</p>
+        <h2>Some of the dogs we’ve cared for</h2>
+      </div>
       <DogGallery />
     </div>
   </section>

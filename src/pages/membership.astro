@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import { contact, membership } from '../config/site';
+import Icon from '../components/Icon.astro';
+import { contact, facebook, membership } from '../config/site';
 import { path } from '../config/paths';
 import mousie from '../assets/photos/mousie.jpg';
 
@@ -10,6 +11,12 @@ const enquire = (level: string) =>
   `mailto:${contact.email}?subject=${encodeURIComponent(`Membership enquiry: ${level}`)}&body=${encodeURIComponent(
     `Hello,\n\nI'd like to join Dogs' Best Friend Rescue Association as ${level}.\n\nName:\nCountry:\n\nThank you!`,
   )}`;
+const levelIcons = ['baby', 'dog', 'shield', 'crown'];
+const steps = [
+  { icon: 'mouse-pointer-click', title: 'Choose a level', text: 'Pick the membership that suits you, or the person you’re giving it to.' },
+  { icon: 'mail', title: 'Send us your details', text: 'Use a “Join” button, or message us on Facebook.' },
+  { icon: 'badge-check', title: 'We’ll do the rest', text: 'We’ll send your membership subscription and the payment details.' },
+];
 ---
 <Base
   title="Membership"
@@ -17,34 +24,40 @@ const enquire = (level: string) =>
   current="membership"
 >
   <section class="hero">
-    <div class="wrap split">
+    <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Membership</p>
+        <p class="eyebrow"><Icon name="award" size={18} /> Membership</p>
         <h1>Become a member of the Association</h1>
-        <p class="lead">
-          We formed an Association so the wider community can make a difference for the lives of street dogs in Thailand.
-        </p>
-        <p>
-          Looking for a unique gift for someone special, want to be involved in animal rescue, or just love dogs? Whatever the
-          reason, come and join our community. There are four levels of yearly membership, doggy themed of course.
-        </p>
+        <p class="lead">We formed an Association so the wider community can make a difference for the lives of street dogs in Thailand.</p>
+        <h3>A gift that does good</h3>
+        <p>Looking for a unique gift for someone special? Want to be involved in animal rescue, or just love dogs? Come and join our community.</p>
+        <div class="btn-row">
+          <a class="btn btn-donate" href="#levels"><Icon name="award" size={20} /> Choose your level</a>
+        </div>
       </div>
-      <Image src={mousie} alt="Mousie, a brown and black puppy with big ears, on the first day at the rescue" widths={[400, 800]} sizes="(min-width: 820px) 45vw, 100vw" loading="eager" />
+      <div class="hero-photo">
+        <Image src={mousie} alt="Mousie, a brown and black puppy with big ears, on the first day at the rescue" widths={[400, 800]} sizes="(min-width: 900px) 45vw, 100vw" loading="eager" />
+        <span class="photo-tag"><Icon name="heart" size={18} /> Mousie, day one</span>
+      </div>
     </div>
   </section>
 
-  <section class="section-sand">
+  <section class="section-sand" id="levels">
     <div class="wrap">
-      <h2>Choose your level</h2>
-      <p>All memberships are yearly.</p>
-      <div class="grid grid-4" style="margin-top:20px">
-        {membership.levels.map((m) => (
-          <div class="card gift">
-            <p class="gift-amount">{baht(m.amount)}<span> a year</span></p>
+      <div class="section-head center">
+        <p class="eyebrow"><Icon name="paw-print" size={18} /> Four yearly levels</p>
+        <h2>Choose your level</h2>
+        <p>Doggy themed, of course.</p>
+      </div>
+      <div class="grid grid-4">
+        {membership.levels.map((m, i) => (
+          <div class={`card gift${i === 2 ? ' featured' : ''}`}>
+            <span class="icon-badge"><Icon name={levelIcons[i] ?? 'award'} size={28} /></span>
             <h3>{m.name}</h3>
-            {m.note && <p><em>{m.note}</em></p>}
+            <p class="gift-amount">{baht(m.amount)}<span> a year</span></p>
+            {m.note && <p class="muted">{m.note}</p>}
             <ul class="checklist">
-              {m.perks.map((p) => <li>{p}</li>)}
+              {m.perks.map((p) => <li><Icon name="check" size={20} /> {p}</li>)}
             </ul>
             <a class="btn btn-donate btn-small" href={enquire(m.name)}>Join as {m.name}</a>
           </div>
@@ -54,16 +67,36 @@ const enquire = (level: string) =>
   </section>
 
   <section>
-    <div class="narrow">
-      <h2>How to join</h2>
-      <p>
-        Choose a level and send us your details. Email <a href={`mailto:${contact.email}`}>{contact.email}</a> or
-        message us on Facebook. We’ll send you a membership subscription and the payment details.
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow"><Icon name="circle-help" size={18} /> How to join</p>
+        <h2>Three simple steps</h2>
+      </div>
+      <ol class="steps">
+        {steps.map((s) => (
+          <li class="card">
+            <span class="icon-badge"><Icon name={s.icon} size={28} /></span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <p style="text-align:center;margin:40px auto 0">
+        Questions? Email <a href={`mailto:${contact.email}`}>{contact.email}</a> or <a href={facebook.url} rel="noopener">message us on Facebook</a>.
       </p>
-      <p>
-        Sponsoring a dog also gives you free Bulldog membership for the time you sponsor.
-        <a href={path('/get-involved/#sponsor')}>Find out about sponsoring</a>.
-      </p>
+    </div>
+  </section>
+
+  <section class="section-brown">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow"><Icon name="heart-pulse" size={18} /> Free Bulldog membership</p>
+        <h2>Sponsor a dog instead?</h2>
+        <p>Sponsoring a dog also gives you free Bulldog membership for as long as you sponsor.</p>
+      </div>
+      <div>
+        <a class="btn btn-donate" href={path('/get-involved/#sponsor')}>Find out about sponsoring <Icon name="arrow-right" size={20} /></a>
+      </div>
     </div>
   </section>
 </Base>

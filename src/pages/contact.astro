@@ -1,65 +1,80 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import { facebook, contact, olderSocials } from '../config/site';
 import { path } from '../config/paths';
+
+const topics = [
+  { icon: 'house-heart', title: 'Adopting a dog', text: 'Ask which dogs are ready for a home. All adopters go through careful checks.', href: path('/get-involved/#adopt') },
+  { icon: 'heart-pulse', title: 'Sponsoring a dog', text: 'Partial and full sponsorship packages are available.', href: path('/get-involved/#sponsor') },
+  { icon: 'award', title: 'Membership', text: 'Tell us your level and we’ll send the subscription and payment details.', href: path('/membership/') },
+  { icon: 'plane-takeoff', title: 'Flying with a dog', text: 'Send us your travel date, airline and destination.', href: path('/get-involved/#fly') },
+  { icon: 'users-round', title: 'Volunteering', text: 'Visits are by appointment only, so please get in touch first.', href: path('/get-involved/#volunteer') },
+  { icon: 'heart', title: 'Giving', text: 'See how to donate, or ask us about bank transfers.', href: path('/donate/') },
+];
 ---
 <Base
   title="Latest updates & contact"
-  description="Follow Dogs' Best Friend Rescue on Facebook for the latest rescue stories and photos, or get in touch by email."
+  description="Follow Dogs' Best Friend Rescue on Facebook for the latest rescue stories and photos, or get in touch by email or phone."
   current="contact"
 >
   <section class="hero">
-    <div class="narrow">
-      <p class="eyebrow">Updates &amp; contact</p>
-      <h1>See the dogs and get in touch</h1>
-      <p class="lead">
-        The rescue shares its news, new arrivals and day-to-day life at the shelter on Facebook. That’s the best place to see
-        what’s happening right now.
-      </p>
-    </div>
-  </section>
-
-  <section class="section-sand">
-    <div class="narrow">
-      <div class="card fb-card">
-        <h2>Latest news on Facebook</h2>
-        <p>Rescue stories, photos, dogs looking for homes and urgent appeals are all posted on our Facebook page. You can also send us a message there.</p>
-        <a class="btn btn-donate" href={facebook.url} rel="noopener">Open our Facebook page</a>
-        <p style="margin:0"><small>{facebook.handle}</small></p>
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow"><Icon name="message-circle" size={18} /> Updates &amp; contact</p>
+        <h1>See the dogs and get in touch</h1>
+        <p class="lead">News, new arrivals and day-to-day life at the shelter are shared on Facebook.</p>
+        <p>It’s the best place to see what’s happening right now, and you can message us there too.</p>
+        <div class="btn-row">
+          <a class="btn btn-donate" href={facebook.url} rel="noopener"><Icon name="message-circle" size={20} /> Open our Facebook page</a>
+        </div>
+        <p class="muted" style="margin-top:12px">{facebook.handle}</p>
+      </div>
+      <div class="card">
+        <h2 style="font-size:1.6rem">Other ways to reach us</h2>
+        <ul class="contact-list">
+          <li>
+            <span class="icon-badge"><Icon name="mail" size={26} /></span>
+            <span><strong>Email</strong><a href={`mailto:${contact.email}`}>{contact.email}</a><br /><a href={`mailto:${contact.secondaryEmail}`}>{contact.secondaryEmail}</a></span>
+          </li>
+          {contact.phone.show && (
+            <li>
+              <span class="icon-badge"><Icon name="phone" size={26} /></span>
+              <span><strong>Help with an animal</strong><a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a></span>
+            </li>
+          )}
+          {contact.postalAddress.show && (
+            <li>
+              <span class="icon-badge"><Icon name="map-pin" size={26} /></span>
+              <span><strong>Head office (mail only)</strong>{contact.postalAddress.lines.join(', ')}</span>
+            </li>
+          )}
+          <li>
+            <span class="icon-badge"><Icon name="link" size={26} /></span>
+            <span><strong>Older accounts</strong>{olderSocials.map((s, i) => (<>{i > 0 && ' · '}<a href={s.url} rel="noopener">{s.label}</a></>))}</span>
+          </li>
+        </ul>
+        <p class="muted" style="margin:24px 0 0"><Icon name="clock" size={16} /> We’re a very small team caring for a lot of dogs, so replies can take a little while. Thank you for your patience.</p>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="narrow">
-      <h2>Other ways to reach us</h2>
-      <p>
-        <strong>Email:</strong> <a href={`mailto:${contact.email}`}>{contact.email}</a><br />
-        or <a href={`mailto:${contact.secondaryEmail}`}>{contact.secondaryEmail}</a>
-      </p>
-      {contact.phone.show && (
-        <p><strong>For help with an animal, call:</strong> <a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a></p>
-      )}
-      {contact.postalAddress.show && (
-        <p><strong>Head office (mail only):</strong><br />{contact.postalAddress.lines.map((l) => (<>{l}<br /></>))}</p>
-      )}
-      <p>
-        <strong>Also find us at:</strong>
-        {olderSocials.map((s, i) => (<>{i > 0 && ' · '}<a href={s.url} rel="noopener">{s.label}</a></>))}
-      </p>
-      <p>
-        We’re a very small team caring for a lot of dogs, so replies can take a little while. Thank you for your patience.
-      </p>
-
-      <h3 style="margin-top:32px">Getting in touch about…</h3>
-      <ul class="checklist">
-        <li><strong><a href={path('/get-involved/#adopt')}>Adopting a dog</a></strong> – ask which dogs are ready for a home. All adopters go through careful checks.</li>
-        <li><strong><a href={path('/get-involved/#sponsor')}>Sponsoring a dog</a></strong> – partial and full sponsorship packages are available.</li>
-        <li><strong><a href={path('/membership/')}>Membership</a></strong> – tell us which level you’d like and we’ll send the subscription and payment details.</li>
-        <li><strong><a href={path('/get-involved/#fly')}>Flying with a dog</a></strong> – travelling to the USA, Canada or Europe? Send us your travel date, airline and destination.</li>
-        <li><strong><a href={path('/get-involved/#volunteer')}>Volunteering</a></strong> – visits are by appointment only, so please get in touch first.</li>
-        <li><strong>Giving</strong> – see <a href={path('/donate/')}>how to donate</a>, or ask us about bank transfers.</li>
-      </ul>
+  <section class="section-sand">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><Icon name="circle-help" size={18} /> Getting in touch about…</p>
+        <h2>How can we help?</h2>
+      </div>
+      <div class="grid grid-3">
+        {topics.map((t) => (
+          <a class="card card-link" href={t.href}>
+            <span class="icon-badge"><Icon name={t.icon} size={28} /></span>
+            <h3>{t.title}</h3>
+            <p>{t.text}</p>
+            <span class="text-link">Find out more <Icon name="arrow-right" size={18} /></span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 </Base>

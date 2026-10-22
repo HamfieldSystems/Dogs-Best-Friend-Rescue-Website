@@ -1,13 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import DogGallery from '../components/DogGallery.astro';
+import PhotoNeeded from '../components/PhotoNeeded.astro';
 import { contact, facebook, partners } from '../config/site';
 import { path } from '../config/paths';
 import charcoal from '../assets/photos/charcoal.jpg';
 import frankie from '../assets/photos/frankie.jpg';
 
 const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURIComponent(subject)}`;
+const jump = [
+  { href: '#adopt', icon: 'house-heart', label: 'Adopt' },
+  { href: '#foster', icon: 'house', label: 'Foster' },
+  { href: '#sponsor', icon: 'heart-pulse', label: 'Sponsor' },
+  { href: '#fly', icon: 'plane-takeoff', label: 'Fly with a dog' },
+  { href: '#volunteer', icon: 'users-round', label: 'Volunteer' },
+  { href: path('/membership/'), icon: 'award', label: 'Membership' },
+];
 ---
 <Base
   title="Get involved"
@@ -16,123 +26,135 @@ const mail = (subject: string) => `mailto:${contact.email}?subject=${encodeURICo
 >
   <section class="hero">
     <div class="narrow">
-      <p class="eyebrow">Get involved</p>
+      <p class="eyebrow"><Icon name="hand-heart" size={18} /> Get involved</p>
       <h1>Make your mark</h1>
-      <p class="lead">
-        Money keeps the shelter running, but there are plenty of other ways to help: give a dog a home, sponsor their care,
-        lend a hand, or carry a dog to their new family.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-outline btn-small" href="#adopt">Adopt</a>
-        <a class="btn btn-outline btn-small" href="#sponsor">Sponsor</a>
-        <a class="btn btn-outline btn-small" href="#fly">Fly with a dog</a>
-        <a class="btn btn-outline btn-small" href="#volunteer">Volunteer</a>
-        <a class="btn btn-outline btn-small" href={path('/membership/')}>Membership</a>
-      </div>
+      <p class="lead">Money keeps the shelter running, but there are plenty of other ways to help.</p>
+      <p>Give a dog a home, sponsor their care, lend a hand, or carry a dog to their new family.</p>
+      <nav class="chip-row" aria-label="On this page">
+        {jump.map((j) => (
+          <a class="btn btn-ghost btn-small" href={j.href}><Icon name={j.icon} size={18} /> {j.label}</a>
+        ))}
+      </nav>
     </div>
   </section>
 
   <section class="section-sand" id="adopt">
     <div class="wrap">
-      <h2>Adopt a dog</h2>
-      <div class="narrow" style="margin-inline:0">
-        <p>
-          Help reduce the street dog population by giving one of our pups a safe and loving home. Our dogs and puppies come from
-          different backgrounds, and some lived poor and harmful lives before they were rescued.
-        </p>
-        <ul class="checklist">
-          <li>All dogs are sterilised, parasite free, wormed and vaccinated.</li>
-          <li>Some have ongoing health issues, so please ask about each dog carefully.</li>
-          <li>There are no adoption fees, and we can help with relocation.</li>
-          <li>Adopters go through a careful screening process and are helped with responsible animal care.</li>
-        </ul>
-        <p><strong>Remember: adopt, don’t shop.</strong> If you can’t adopt, consider fostering, sponsoring or donating to help them find their forever homes.</p>
-        <div class="btn-row">
-          <a class="btn btn-donate" href={mail('Adoption application / expression of interest')}>Apply or express interest</a>
-          <a class="btn btn-outline" href={facebook.url} rel="noopener">See who needs a home now</a>
+      <div class="split">
+        <div>
+          <p class="eyebrow"><Icon name="house-heart" size={18} /> Adopt</p>
+          <h2>Adopt, don’t shop</h2>
+          <p>Help reduce the street dog population by giving one of our pups a safe and loving home.</p>
+          <p>Our dogs come from different backgrounds. Some lived poor and harmful lives before they were rescued.</p>
+        </div>
+        <div class="card">
+          <h3>Every adoption includes</h3>
+          <ul class="checklist">
+            <li><Icon name="check" size={20} /> Sterilised, parasite free, wormed and vaccinated</li>
+            <li><Icon name="check" size={20} /> No adoption fees</li>
+            <li><Icon name="check" size={20} /> Help with relocation</li>
+            <li><Icon name="check" size={20} /> Careful screening and help with responsible care</li>
+          </ul>
+          <p class="muted">Some dogs have ongoing health issues, so please ask about each dog carefully.</p>
+          <div class="btn-row">
+            <a class="btn btn-donate" href={mail('Adoption application / expression of interest')}><Icon name="send" size={20} /> Apply or express interest</a>
+          </div>
         </div>
       </div>
-      <h3 style="margin-top:40px">Dogs listed for adoption on our 2022 website</h3>
-      <p>For the dogs looking for homes today, please check Facebook or get in touch.</p>
+
+      <div class="section-head" style="margin-top:clamp(56px,8vw,96px)">
+        <h3>Dogs listed for adoption on our 2022 website</h3>
+        <p>For the dogs looking for homes today, please <a href={facebook.url} rel="noopener">check Facebook</a> or get in touch.</p>
+      </div>
       <DogGallery all />
     </div>
   </section>
 
-  <section>
-    <div class="narrow">
-      <h2>Foster a dog</h2>
-      <p>
-        Foster homes help dogs learn house training and get used to living with people, which helps us find the right family for
-        each dog. If you’re near the rescue and can offer a temporary home, <a href={mail('Fostering')}>get in touch</a>.
-      </p>
+  <section id="foster">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow"><Icon name="house" size={18} /> Foster</p>
+        <h2>Open your home for a while</h2>
+        <p>Foster homes help dogs learn house training and get used to living with people. That helps us find the right family for each dog.</p>
+        <p>If you’re near the rescue and can offer a temporary home, we’d love to hear from you.</p>
+        <a class="text-link" href={mail('Fostering')}>Ask about fostering <Icon name="arrow-right" size={18} /></a>
+      </div>
+      <PhotoNeeded brief="A foster dog relaxing at home with its foster family, sofa, garden or lap." />
     </div>
   </section>
 
   <section class="section-sand" id="sponsor">
     <div class="wrap split">
       <div>
+        <p class="eyebrow"><Icon name="heart-pulse" size={18} /> Sponsor</p>
         <h2>Sponsor a dog</h2>
-        <p>
-          Some of our rescues need complex and expensive medical treatment, and others aren’t suitable for adoption. Partial and
-          full sponsorship packages are available. As a sponsor you receive:
-        </p>
+        <p>Some rescues need complex, expensive treatment. Others aren’t suitable for adoption. Partial and full sponsorship packages are available.</p>
+        <h3>As a sponsor you receive</h3>
         <ul class="checklist">
-          <li>Regular updates on the dog’s treatment and wellbeing</li>
-          <li>A certificate of appreciation</li>
-          <li>Free <a href={path('/membership/')}>Bulldog membership</a> while you sponsor</li>
+          <li><Icon name="check" size={20} /> Regular updates on your dog’s treatment and wellbeing</li>
+          <li><Icon name="check" size={20} /> A certificate of appreciation</li>
+          <li><Icon name="check" size={20} /> Free <a href={path('/membership/')}>Bulldog membership</a> while you sponsor</li>
         </ul>
-        <h3>Charcoal (born 6/3/20)</h3>
-        <p>
-          She may have wonky back legs, but Charcoal doesn’t let it slow her down. She was dumped as a puppy at a temple with her
-          brother Noodles, and has grown up in foster care. She’s a very energetic dog. Charcoal needs surgery to correct her
-          luxating patellas. She’s already sterilised and otherwise healthy, and once she’s had her operation she can be placed for adoption.
-        </p>
-        <p><strong>2022 estimates:</strong> surgery and physical therapy 40,000–50,000 baht; X-rays 1,200 baht.</p>
-        <a class="btn btn-donate" href={mail('Sponsorship enquiry')}>Sponsor enquiry</a>
+        <div class="card" style="margin-top:32px">
+          <h3>Charcoal <span class="muted" style="font-family:var(--sans);font-size:1rem;font-weight:400">born 6/3/20</span></h3>
+          <p>She may have wonky back legs, but Charcoal doesn’t let it slow her down. Dumped as a puppy at a temple with her brother Noodles, she has grown up in foster care and is a very energetic dog.</p>
+          <p>Charcoal needs surgery to correct her luxating patellas. She’s already sterilised and otherwise healthy, and after her operation she can be placed for adoption.</p>
+          <p class="muted"><strong>2022 estimates:</strong> surgery and physical therapy 40,000–50,000 baht; X-rays 1,200 baht.</p>
+          <a class="btn btn-donate" href={mail('Sponsorship enquiry')}><Icon name="send" size={20} /> Sponsor enquiry</a>
+        </div>
       </div>
       <Image src={charcoal} alt="Charcoal, a black dog with large upright ears, sitting on a tiled floor" widths={[330]} sizes="330px" style="max-width:330px;margin-inline:auto" />
     </div>
   </section>
 
   <section id="fly">
-    <div class="narrow">
-      <h2>Become a flight volunteer</h2>
-      <p class="lead">Help a dog get to their forever home.</p>
-      <p>
-        Are you travelling to the USA, Canada or Europe? Flight volunteers let us send adopted dogs on their flight as oversized
-        luggage. Tell us your date of travel, airline and destination, and we’ll be in touch if we have adopted dogs that can travel with you.
-      </p>
-      <a class="btn btn-donate" href={mail('Flight volunteer')}>Offer your flight</a>
+    <div class="wrap split reverse">
+      <PhotoNeeded brief="A dog in a travel crate at the airport, or a flight volunteer meeting an adopted dog's new family." />
+      <div>
+        <p class="eyebrow"><Icon name="plane-takeoff" size={18} /> Fly with a dog</p>
+        <h2>Become a flight volunteer</h2>
+        <p class="lead">Help a dog get to their forever home.</p>
+        <p>Travelling to the USA, Canada or Europe? Flight volunteers let us send adopted dogs on their flight as oversized luggage.</p>
+        <h3>What we need from you</h3>
+        <ul class="checklist">
+          <li><Icon name="calendar" size={20} /> Your date of travel</li>
+          <li><Icon name="plane" size={20} /> Your airline</li>
+          <li><Icon name="map-pin" size={20} /> Your destination</li>
+        </ul>
+        <p>We’ll be in touch if we have adopted dogs that can travel with you.</p>
+        <a class="btn btn-donate" href={mail('Flight volunteer')}><Icon name="send" size={20} /> Offer your flight</a>
+      </div>
     </div>
   </section>
 
   <section class="section-sand" id="volunteer">
-    <div class="narrow">
-      <h2>Volunteer your time</h2>
-      <p>
-        This is one of the simplest ways to help. We believe our work succeeds best when the community gets actively involved.
-        An expert pooper scooper, walker and master of play is always needed!
-      </p>
-      <p>Visits are limited and by appointment only, so please <a href={mail('Volunteering')}>get in touch first</a>.</p>
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow"><Icon name="users-round" size={18} /> Volunteer</p>
+        <h2>Volunteer your time</h2>
+        <p>This is one of the simplest ways to help. Our work succeeds best when the community gets involved.</p>
+        <blockquote><p>An expert pooper scooper, walker and master of play is always needed!</p></blockquote>
+        <p style="margin-top:24px">Visits are limited and by appointment only, so please get in touch first.</p>
+        <a class="text-link" href={mail('Volunteering')}>Arrange a visit <Icon name="arrow-right" size={18} /></a>
+      </div>
+      <PhotoNeeded brief="A volunteer walking or playing with the dogs at the shelter." />
     </div>
   </section>
 
   <section id="partners">
     <div class="wrap split">
       <div>
+        <p class="eyebrow"><Icon name="heart-handshake" size={18} /> Partners</p>
         <h2>Our partners</h2>
-        <p>
-          Our partners help the Association support our rescues, treatments, operations, equipment and materials, and give our
-          members special discounts and offers. Thank you all for your continued support.
-        </p>
+        <p>Our partners help us support rescues, treatments, operations and equipment, and give our members special discounts and offers. Thank you all for your continued support.</p>
         <ul class="checklist">
           {partners.map((p) => (
-            <li><strong>{p.name}</strong>{p.text && <> – {p.text}</>}</li>
+            <li><Icon name="heart-handshake" size={20} /><span><strong>{p.name}</strong>{p.text && <> – {p.text}</>}</span></li>
           ))}
         </ul>
-        <p>Would your business like to partner with us? <a href={mail('Partnership')}>Get in touch</a>.</p>
+        <a class="text-link" href={mail('Partnership')}>Partner with us <Icon name="arrow-right" size={18} /></a>
       </div>
-      <Image src={frankie} alt="A black kitten touching noses with a black cat on a tiled floor" widths={[480, 900]} sizes="(min-width: 820px) 45vw, 100vw" />
+      <Image src={frankie} alt="A black kitten touching noses with a black cat on a tiled floor" widths={[480, 900]} sizes="(min-width: 860px) 45vw, 100vw" />
     </div>
   </section>
 </Base>
