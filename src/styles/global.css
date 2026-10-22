@@ -13,9 +13,14 @@
   --tint: #eef7f8;         /* pale teal section background */
   --tint-warm: #fdf1ef;    /* pale red, used sparingly */
   --line: #d9e8eb;
-  --red: #c8202a;          /* donate buttons and accent words: white text 5.7:1 */
-  --red-dark: #a8161f;
+  /* Red is an accent only: icons, thin borders, the heart on buttons and
+     large accent words. Never as a background behind body-size text. */
+  --red: #e31e24;          /* the logo red: icons and borders only */
+  --red-text: #b3141c;     /* accent words and prices: 6.9:1 on white */
+  --red-dark: #9c1219;     /* tag text on --red-tint: 6.9:1 */
   --red-tint: #fde4e2;
+  --teal-hover: #0f5361;   /* white text 8.6:1 */
+  --teal-chip: #d8eff3;
   --teal: #0b6574;         /* links: 6.7:1 on white */
   --teal-bright: #2bb3c8;  /* the logo teal, for decoration on dark only */
   --teal-deep: #0a3d47;    /* bold bands and footer */
@@ -59,7 +64,7 @@ h1, h2, h3 {
 h1 { font-size: clamp(2.5rem, 6.4vw, 4.6rem); font-weight: 800; }
 h2 { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 780; }
 h3 { font-size: clamp(1.3rem, 2.2vw, 1.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; }
-.accent { color: var(--red); }
+.accent { color: var(--red-text); }
 p { margin: 0 0 1.1em; text-wrap: pretty; }
 p, li { max-width: 66ch; }
 strong { font-weight: 700; }
@@ -87,7 +92,7 @@ a:hover { color: var(--red-dark); }
 .site-header { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(1.2) blur(10px); }
 .header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 20px; padding: 10px 0; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.2rem; line-height: 1.05; letter-spacing: -0.02em; }
-.brand small { display: block; font-family: var(--sans); font-weight: 700; font-size: 0.72rem; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
+.brand small { display: block; font-family: var(--sans); font-weight: 700; font-size: 0.72rem; color: var(--red-text); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
 .brand img { width: 52px; height: auto; }
 .site-header nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; }
 .site-header nav a:not(.btn) { display: inline-block; padding: 10px 14px; color: var(--ink); text-decoration: none; font-weight: 650; font-size: 1rem; border-radius: 999px; }
@@ -111,10 +116,23 @@ a:hover { color: var(--red-dark); }
 }
 .btn .icon { flex: none; }
 .btn:hover { transform: translateY(-1px); }
-.btn-donate { background: var(--red); color: var(--white); box-shadow: 0 8px 22px -6px rgba(200, 32, 42, 0.45); }
-.btn-donate:hover { background: var(--red-dark); color: var(--white); }
-.btn-outline { background: var(--white); color: var(--teal); border-color: var(--teal); }
-.btn-outline:hover { background: var(--teal); color: var(--white); }
+.btn:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 999px; }
+/* Primary (donate): deep teal with white text, 11.9:1. The red heart sits in a
+   white circle as the brand accent. */
+.btn-donate { background: var(--teal-deep); color: var(--white); box-shadow: 0 10px 24px -10px rgba(10, 61, 71, 0.55); }
+.btn-donate:hover { background: var(--teal-hover); color: var(--white); }
+.btn-donate:has(> .icon:first-child) { padding-left: 12px; }
+.btn-donate .icon { box-sizing: content-box; padding: 6px; border-radius: 50%; background: var(--white); color: var(--red); }
+.btn-donate.btn-small:has(> .icon:first-child) { padding-left: 8px; }
+.btn-donate.btn-small .icon { padding: 5px; }
+/* Secondary: white with a teal outline */
+.btn-outline { background: var(--white); color: var(--teal-deep); border-color: var(--teal); }
+.btn-outline:hover { background: var(--tint); color: var(--teal-deep); }
+/* On deep teal sections the primary button flips to white */
+.section-deep .btn-donate, .section-brown .btn-donate, .site-footer .btn-donate { background: var(--white); color: var(--teal-deep); box-shadow: none; }
+.section-deep .btn-donate:hover, .section-brown .btn-donate:hover, .site-footer .btn-donate:hover { background: var(--tint); color: var(--teal-deep); }
+.section-deep .btn-donate .icon, .section-brown .btn-donate .icon, .site-footer .btn-donate .icon { background: var(--red-tint); }
+.section-deep .btn:focus-visible, .site-footer .btn:focus-visible { outline-color: var(--teal-soft); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { background: var(--tint); color: var(--ink); }
 .btn-light { background: var(--white); color: var(--teal-deep); }
@@ -137,8 +155,9 @@ section { padding: var(--space-section) 0; }
 .section-head { margin-bottom: clamp(32px, 5vw, 56px); max-width: 780px; }
 .section-head.center { text-align: center; margin-inline: auto; }
 .section-head.center p { margin-inline: auto; }
-.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 750; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
-.section-brown .eyebrow, .section-deep .eyebrow { color: var(--teal-soft); }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 750; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+.eyebrow .icon { color: var(--red); }
+.section-brown .eyebrow, .section-deep .eyebrow, .section-brown .eyebrow .icon, .section-deep .eyebrow .icon { color: var(--teal-soft); }
 .chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 999px; background: var(--white); border: 1px solid var(--line); box-shadow: 0 2px 8px -4px rgba(18, 42, 48, 0.2); color: var(--ink); font-size: 0.95rem; font-weight: 650; margin-bottom: 22px; }
 .chip .icon { color: var(--red); }
 .lead { font-size: clamp(1.2rem, 2vw, 1.35rem); line-height: 1.6; color: var(--ink); }
@@ -167,7 +186,7 @@ section { padding: var(--space-section) 0; }
 .float-card { position: absolute; left: -24px; bottom: 28px; display: flex; align-items: center; gap: 14px; max-width: min(340px, 82%); padding: 12px 16px 12px 12px; background: var(--white); border-radius: 18px; box-shadow: var(--shadow); text-decoration: none; color: var(--ink); }
 .float-card:hover { color: var(--ink); transform: translateY(-2px); }
 .float-card img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; box-shadow: none; flex: none; }
-.float-card small { display: block; font-size: 0.75rem; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+.float-card small { display: block; font-size: 0.75rem; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-text); }
 .float-card strong { display: block; font-family: var(--display); font-size: 1.1rem; line-height: 1.2; }
 .float-card span.desc { display: block; font-size: 0.9rem; line-height: 1.35; color: var(--ink-soft); }
 .float-card .icon { color: var(--teal); flex: none; }
@@ -200,7 +219,7 @@ section { padding: var(--space-section) 0; }
 .card-link { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
 .card-link:hover { color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--teal-soft); }
 .card-link .text-link { margin-top: auto; padding-top: 12px; color: var(--teal); }
-.icon-badge { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--red-tint); color: var(--red); margin-bottom: 18px; }
+.icon-badge { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--teal-chip); color: var(--teal); margin-bottom: 18px; }
 .section-sand .icon-badge, .section-tint .icon-badge { background: var(--white); }
 .section-brown .card, .section-deep .card { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.14); }
 .section-brown .card-link, .section-brown .card-link:hover, .section-deep .card-link, .section-deep .card-link:hover { color: var(--on-deep); }
@@ -220,8 +239,8 @@ section { padding: var(--space-section) 0; }
 .dog-card .dog-photo { position: relative; }
 .dog-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .dog-card .tags { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
-.tag { font-size: 0.75rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--red); color: var(--white); }
-.tag.teal { background: var(--teal-deep); }
+.tag { font-size: 0.78rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; background: var(--red-tint); color: var(--red-dark); box-shadow: 0 2px 6px -2px rgba(18, 42, 48, 0.25); }
+.tag.teal { background: var(--teal-chip); color: var(--teal-deep); }
 .dog-card .dog-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
 .dog-card .dog-body p { font-size: 1rem; }
 .dog-card .text-link { margin-top: auto; color: var(--teal); }
@@ -265,10 +284,10 @@ section { padding: var(--space-section) 0; }
 
 .gift { display: flex; flex-direction: column; }
 .gift .btn { margin-top: auto; align-self: flex-start; }
-.gift-amount { font-family: var(--display); font-size: 2.3rem; font-weight: 800; letter-spacing: -0.03em; color: var(--red); margin-bottom: 0.15em; line-height: 1.1; }
+.gift-amount { font-family: var(--display); font-size: 2.3rem; font-weight: 800; letter-spacing: -0.03em; color: var(--red-text); margin-bottom: 0.15em; line-height: 1.1; }
 .gift-amount span { font-family: var(--sans); font-size: 1rem; font-weight: 700; letter-spacing: 0; }
 .gift.featured { border: 2px solid var(--red); position: relative; }
-.gift.featured::before { content: 'Most needed'; position: absolute; top: -13px; left: 24px; background: var(--red); color: var(--white); font-size: 0.78rem; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 12px; border-radius: 999px; }
+.gift.featured::before { content: 'Most needed'; position: absolute; top: -13px; left: 24px; background: var(--red-tint); color: var(--red-dark); border: 1px solid #f6b9b4; font-size: 0.78rem; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 12px; border-radius: 999px; }
 
 /* ── Quotes, lists, FAQ ───────────────────────────────── */
 blockquote { margin: 0; padding: 4px 0 4px 24px; border-left: 4px solid var(--red); font-family: var(--display); font-weight: 600; font-size: clamp(1.25rem, 2vw, 1.45rem); line-height: 1.4; color: var(--ink); }
