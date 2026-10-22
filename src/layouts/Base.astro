@@ -36,7 +36,7 @@ const year = new Date().getFullYear();
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href={path('/favicon.png')} />
     <link rel="apple-touch-icon" href={path('/apple-touch-icon.png')} />
-    <meta name="theme-color" content="#fffaf3" />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
@@ -52,6 +52,12 @@ const year = new Date().getFullYear();
     {!donations.approved && (
       <div class="preview-banner" role="note">
         Preview: online donation links are switched off until the rescue confirms them.
+      </div>
+    )}
+
+    {contact.phone.show && (
+      <div class="alert-bar">
+        Help with an animal? Call <a href={`tel:${contact.phone.tel}`}>{contact.phone.display}</a>
       </div>
     )}
 

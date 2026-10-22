@@ -2,10 +2,15 @@
 import Icon from './Icon.astro';
 import { impact } from '../config/site';
 
+interface Props {
+  // Float the numbers as a card overlapping the section above.
+  overlap?: boolean;
+}
+const { overlap = false } = Astro.props;
 const stats = impact.stats.filter((s) => s.value || impact.showPlaceholders);
 ---
 {stats.length > 0 && (
-  <section class="impact" aria-labelledby="impact-heading">
+  <section class={`impact${overlap ? ' overlap' : ''}`} aria-labelledby="impact-heading">
     <div class="wrap">
       <h2 id="impact-heading" class="visually-hidden">The rescue in numbers</h2>
       <ul class="impact-list">

@@ -2,20 +2,44 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import DogGallery from '../components/DogGallery.astro';
 import ImpactRibbon from '../components/ImpactRibbon.astro';
-import PhotoNeeded from '../components/PhotoNeeded.astro';
 import { facebook } from '../config/site';
 import { path } from '../config/paths';
 import happy from '../assets/photos/happy.jpg';
+import bella from '../assets/photos/bella.jpg';
+import angus from '../assets/photos/angus.jpg';
 import peter from '../assets/photos/peter.jpg';
 import rambo from '../assets/photos/rambo.jpg';
+import charcoal from '../assets/photos/charcoal.jpg';
+import noodles from '../assets/photos/noodles.jpg';
+import zoe from '../assets/photos/zoe.jpg';
+import oreo from '../assets/photos/oreo.jpg';
+import missySox from '../assets/photos/missy-and-sox.jpg';
+import pip from '../assets/photos/pip.jpg';
+import macey from '../assets/photos/macey.jpg';
+import trixie from '../assets/photos/trixie.jpg';
 
 const costs = [
   { icon: 'stethoscope', title: 'Vet care', text: 'Treatment, medicine and emergencies for sick and injured dogs.' },
   { icon: 'soup', title: 'Food', text: 'Every dog at the shelter, fed every single day.' },
   { icon: 'lightbulb', title: 'Running the shelter', text: 'Electricity, fencing, leads and the everyday costs.' },
   { icon: 'hand-heart', title: 'A carer’s wage', text: 'Paying the staff member who looks after the dogs.' },
+];
+
+// Only dogs with a verified story from the 2022 site.
+const stories = [
+  { img: charcoal, alt: 'Charcoal, a black dog with big upright ears, sitting on a tiled floor', tags: [['Sponsor', '']], name: 'Meet Charcoal', text: 'Dumped at a temple as a puppy. Needs surgery to fix her wonky back legs, but it never slows her down.', href: path('/get-involved/#sponsor'), cta: 'Sponsor Charcoal' },
+  { img: noodles, alt: 'Noodles, a black and white dog with his mouth open, held by a carer', tags: [['Adopt', '']], name: 'Meet Noodles', text: 'Charcoal’s brother. The two were dumped at a temple together as puppies.', href: path('/get-involved/#adopt'), cta: 'Ask about adopting' },
+  { img: rambo, alt: 'Rambo, a black and tan puppy, walking across the dirt at the shelter', tags: [['Adopted', 'teal']], name: 'Rambo’s happy ending', text: 'One of our more fortunate rescues. Rambo now lives with his adopted family in America.', href: path('/about/'), cta: 'Read our story' },
+];
+
+const grid = [
+  { img: zoe, alt: 'Zoe, a black puppy lying on a wooden bench' },
+  { img: oreo, alt: 'Oreo, a black and white dog' },
+  { img: missySox, alt: 'Missy and Sox playing together by a fence' },
+  { img: pip, alt: 'Pip, a black and tan puppy' },
+  { img: macey, alt: 'Macey, a slim black young dog' },
+  { img: trixie, alt: 'Trixie, a tan dog with large ears' },
 ];
 
 const ways = [
@@ -28,39 +52,41 @@ const ways = [
 ];
 ---
 <Base current="home">
-  <section class="hero">
+  <section class="hero hero-home">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow"><Icon name="paw-print" size={18} /> Dog rescue in Ratchaburi, Thailand</p>
-        <h1>Helping the street dogs of Thailand, one dog at a time.</h1>
-        <p class="lead">
-          We take in sick, injured and unwanted dogs, treat them, and give them a safe place to live.
-          Some find new families. Others stay with us for life.
-        </p>
+        <span class="chip"><Icon name="heart" size={16} /> Ratchaburi, Thailand · Caring for dogs since 2016</span>
+        <h1>Helping the street dogs of Thailand, <span class="accent">one dog at a time.</span></h1>
+        <p class="lead">We take in sick, injured and unwanted dogs, treat them, and give them a safe place to live. Some find new families. Others stay with us for life.</p>
         <div class="btn-row">
           <a class="btn btn-donate" href={path('/donate/')}><Icon name="heart" size={20} /> Help keep the rescue running</a>
-          <a class="btn btn-ghost" href={path('/about/')}>Our story</a>
+          <a class="btn btn-outline" href={path('/about/')}>Our story</a>
         </div>
-        <ul class="trust-line">
-          <li><Icon name="users-round" size={20} /> Run by Peter &amp; Khung</li>
-          <li><Icon name="map-pin" size={20} /> Ratchaburi shelter</li>
-          <li><Icon name="calendar-heart" size={20} /> Caring for dogs since 2016</li>
-        </ul>
       </div>
-      <div class="hero-photo">
-        <Image src={happy} alt="Happy, a tan rescue dog with a big smile, sitting on grass with a red lead" widths={[480, 800, 1000]} sizes="(min-width: 900px) 45vw, 100vw" loading="eager" />
-        <span class="photo-tag"><Icon name="heart" size={18} /> This is Happy</span>
+      <div class="collage">
+        <Image class="c-main" src={happy} alt="Happy, a tan rescue dog with a big smile, sitting on grass with a red lead" widths={[480, 800]} sizes="(min-width: 960px) 28vw, 58vw" loading="eager" />
+        <Image src={bella} alt="Bella, a black and tan puppy, looking up at the camera" widths={[300, 500]} sizes="(min-width: 960px) 20vw, 40vw" loading="eager" />
+        <Image src={angus} alt="Angus, a fluffy brown puppy sitting on a cushion" widths={[300, 500]} sizes="(min-width: 960px) 20vw, 40vw" loading="eager" />
+        <a class="float-card" href={path('/get-involved/#sponsor')}>
+          <Image src={charcoal} alt="" widths={[120]} sizes="60px" />
+          <span>
+            <small>Sponsor</small>
+            <strong>Meet Charcoal</strong>
+            <span class="desc">Needs surgery for her wonky back legs.</span>
+          </span>
+          <Icon name="arrow-right" size={20} />
+        </a>
       </div>
     </div>
   </section>
 
-  <ImpactRibbon />
+  <ImpactRibbon overlap />
 
   <section>
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow"><Icon name="hand-coins" size={18} /> Where your money goes</p>
-        <h2>A shelter costs money every single day</h2>
+        <h2>A shelter costs money <span class="accent">every single day</span></h2>
         <p class="lead">Rescue isn’t only about emergencies. The dogs need feeding and caring for every day of the year, whether or not anyone gives that month.</p>
       </div>
       <div class="grid grid-4">
@@ -78,75 +104,78 @@ const ways = [
     </div>
   </section>
 
-  <section class="section-sand">
-    <div class="wrap split">
-      <Image src={peter} alt="Peter and Khung standing on a city street, Khung holding a small black fluffy dog" widths={[400, 720]} sizes="(min-width: 860px) 45vw, 100vw" />
-      <div>
-        <p class="eyebrow"><Icon name="users-round" size={18} /> Who we are</p>
-        <h2>Started by Peter and Khung</h2>
-        <p>
-          It began at local markets, where Peter and his wife Khung found Beagle puppies being dumped because they hadn’t
-          sold or were unwell. Peter rescued over 50 of them and found them loving homes.
-        </p>
-        <h3>From a full house to a shelter</h3>
-        <p>
-          From 2016 Peter fostered dogs at home. Not every dog can be rehomed, and the numbers grew. So he rented farmland
-          outside the city where the dogs could live more freely. That became Dogs’ Best Friend Rescue.
-        </p>
-        <a class="text-link" href={path('/about/')}>Read our story <Icon name="arrow-right" size={18} /></a>
+  <section class="section-tint">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><Icon name="dog" size={18} /> Real dogs, real care</p>
+        <h2>Meet some of <span class="accent">our dogs</span></h2>
+      </div>
+      <div class="dog-cards">
+        {stories.map((s) => (
+          <a class="dog-card" href={s.href}>
+            <div class="dog-photo">
+              <Image src={s.img} alt={s.alt} widths={[400, 700]} sizes="(min-width: 700px) 33vw, 100vw" />
+              <div class="tags">{s.tags.map(([t, c]) => <span class={`tag ${c}`}>{t}</span>)}</div>
+            </div>
+            <div class="dog-body">
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+              <span class="text-link">{s.cta} <Icon name="arrow-right" size={18} /></span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
   <section>
-    <div class="wrap split reverse">
+    <div class="wrap split">
+      <Image src={peter} alt="Peter and Khung standing on a city street, Khung holding a small black fluffy dog" widths={[400, 720]} sizes="(min-width: 860px) 45vw, 100vw" />
       <div>
-        <p class="eyebrow"><Icon name="sparkles" size={18} /> A rescue story</p>
-        <h2>Rambo’s happy ending</h2>
-        <p>Rambo was one of the more fortunate rescues. After his care at the shelter, he was adopted and now lives with his family in America.</p>
-        <h3>Every dog gets the same care</h3>
-        <p>Not every dog has an ending like Rambo’s. But every one of them is fed, treated and looked after, thanks to people who give.</p>
-        <div class="btn-row">
-          <a class="btn btn-donate" href={path('/donate/')}><Icon name="heart" size={20} /> Help the next dog</a>
-        </div>
+        <p class="eyebrow"><Icon name="users-round" size={18} /> Who we are</p>
+        <h2>Started by <span class="accent">Peter and Khung</span></h2>
+        <p>It began at local markets, where Peter and his wife Khung found Beagle puppies being dumped because they hadn’t sold or were unwell. Peter rescued over 50 of them and found them loving homes.</p>
+        <h3>From a full house to a shelter</h3>
+        <p>From 2016 Peter fostered dogs at home. Not every dog can be rehomed, and the numbers grew. So he rented farmland outside the city where the dogs could live more freely. That became Dogs’ Best Friend Rescue.</p>
+        <a class="text-link" href={path('/about/')}>Read our story <Icon name="arrow-right" size={18} /></a>
       </div>
-      <Image src={rambo} alt="Rambo, a black and tan puppy, walking across the dirt at the shelter" widths={[480, 960]} sizes="(min-width: 860px) 45vw, 100vw" />
     </div>
   </section>
 
-  <section class="section-sand">
+  <section class="section-warm">
     <div class="narrow">
       <blockquote class="pull-quote">
-        <p>“Peter’s dream is to help the suffering live a more comfortable life.”</p>
+        <p>“Peter’s dream is to help the suffering live a <span class="accent">more comfortable life.</span>”</p>
         <cite>From our original website</cite>
       </blockquote>
     </div>
   </section>
 
   <section>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow"><Icon name="dog" size={18} /> Some of the dogs we’ve cared for</p>
-        <h2>Real dogs, real care</h2>
-        <p>For the dogs at the shelter right now, follow us on Facebook.</p>
+    <div class="wrap split reverse">
+      <div class="photo-grid">
+        {grid.map((g) => (
+          <a href={facebook.url} rel="noopener" aria-label={`${g.alt.split(',')[0]}: see more on Facebook`}>
+            <Image src={g.img} alt={g.alt} widths={[240, 400]} sizes="(min-width: 860px) 15vw, 30vw" />
+          </a>
+        ))}
       </div>
-      <DogGallery />
-      <div class="split" style="margin-top:48px">
-        <PhotoNeeded brief="A wide shot of the shelter today: the dogs in their runs or out on the farmland, ideally with Peter or Khung." ratio="16 / 9" />
-        <div>
-          <h3>See today’s dogs</h3>
-          <p>New arrivals, recoveries and dogs looking for homes are posted on our Facebook page.</p>
-          <a class="text-link" href={facebook.url} rel="noopener">Follow us on Facebook <Icon name="arrow-right" size={18} /></a>
+      <div>
+        <p class="eyebrow"><Icon name="camera" size={18} /> Follow along</p>
+        <h2>See what happens at the shelter <span class="accent">every day</span></h2>
+        <p>New arrivals, recoveries and dogs looking for homes. Facebook is where our updates live.</p>
+        <div class="btn-row">
+          <a class="btn btn-outline" href={facebook.url} rel="noopener"><Icon name="message-circle" size={20} /> Follow on Facebook</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-brown">
+  <section class="section-deep">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow"><Icon name="hand-heart" size={18} /> More ways to help</p>
-        <h2>Not just money</h2>
+        <h2>Not just <span class="accent">money</span></h2>
       </div>
       <div class="grid grid-3">
         {ways.map((w) => (
@@ -157,6 +186,17 @@ const ways = [
             <span class="text-link">{w.cta} <Icon name="arrow-right" size={18} /></span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>One gift. <span class="accent">One dog cared for.</span></h2>
+      <p class="lead">Food, vet care and a carer’s wage, every month. Every gift goes to the daily care of the dogs.</p>
+      <div class="btn-row">
+        <a class="btn btn-donate" href={path('/donate/')}><Icon name="heart" size={20} /> Donate today</a>
+        <a class="btn btn-outline" href={path('/membership/')}>Become a member</a>
       </div>
     </div>
   </section>
